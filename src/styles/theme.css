@@ -131,9 +131,21 @@
   --spacing-mark: 28px; /* Logo mark, Default */
   --spacing-mark-sm: 22px; /* Logo mark, Small */
   --spacing-avatar-lg: 220px; /* Avatar Large */
+  --spacing-dot: 6px; /* Nav link active indicator */
 
   /* Selection bounce for Tag: 1 → 1.05 → 1 (Figma: spring/bouncy) */
   --animate-pop: ka-pop var(--duration-base) var(--motion-ease-out);
+  /* Mobile menu: panel slides down, links rise in with a 40ms stagger (Figma: spring/gentle) */
+  --animate-menu-in: ka-menu-in var(--duration-base) var(--motion-ease-out) both;
+  --animate-rise: ka-rise var(--duration-base) var(--motion-ease-out) both;
+  @keyframes ka-menu-in {
+    from { transform: translateY(-100%); }
+    to { transform: none; }
+  }
+  @keyframes ka-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
   @keyframes ka-pop {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }

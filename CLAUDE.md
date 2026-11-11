@@ -55,6 +55,8 @@ import { Button, Icon } from "ka-design-system";
 | `State` Selected / Active / Disabled / Coming soon | boolean props `selected` / `active` / `disabled` / `comingSoon` |
 | `Breakpoint` | not a prop: responds to screen size |
 
+**Site links:** `NavItem` = `{ label, href }`. Header and Mobile menu take `linkAs` for your router's link component (anything that accepts `href`, e.g. Next.js `Link`); the default is a plain `<a>`.
+
 Linkable components (Button, Text link, Icon button, Logo, Nav link) take `asChild` to render as your router's `<Link>` or an `<a>`. Button and Text link: put the label inside your link. Icon button and Logo: pass an **empty** link; the icon or wordmark is inserted for you.
 
 ## Component table
@@ -71,10 +73,10 @@ API column = intended props. ✅ built · 🟡 planned. Figma links: `https://ww
 | Avatar | 6:148 | ✅ | `alt` (required), `src?`, `size: "small"\|"medium"\|"large"`, `initials?` (fallback, default from `alt`) |
 | Divider | 6:149 | ✅ | — (renders `<hr>`, fills its container) |
 | Logo | 6:158 | ✅ | `size: "default"\|"small"`, `href?` (default "/"), `asChild?` (pass an empty router `<Link>`) |
-| Nav link | 7:11 | 🟡 | `children`, `active?`, `asChild?` |
-| Header | 7:75 | 🟡 | `links`, `activeHref?` (responsive) |
-| Mobile menu | 7:76 | 🟡 | `open`, `onOpenChange`, `links` |
-| Footer | 7:158 | 🟡 | contact + LinkedIn (responsive) |
+| Nav link | 7:11 | ✅ | `children`, `href`, `active?` (sets `aria-current="page"`), `asChild?` (router link with the text inside) |
+| Header | 7:75 | ✅ | `links: NavItem[]`, `email`, `activeHref?`, `cta?` (default "Get in touch" → /contact), `linkAs?`. Responsive; includes Mobile menu below 768 |
+| Mobile menu | 7:76 | ✅ | `links`, `email`, `activeHref?`, `cta?`, `linkAs?`, `open?` + `onOpenChange?` (optional control). Renders its own toggle |
+| Footer | 7:158 | ✅ | `email`, `linkedInHref`, `title?`, `message?`, `copyright?`, `credit?` (defaults from Figma). Responsive |
 | Hero intro | 8:47 | 🟡 | statement (mixed Display Regular/Bold) (responsive) |
 | Section header | 8:48 | 🟡 | `overline`, `title`, `action?` |
 | Project card | 8:217 | 🟡 | `project`, `client`, `description`, `tint`, `status: "live"\|"coming-soon"`, `image` |

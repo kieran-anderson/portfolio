@@ -1,6 +1,6 @@
 # ka-design-system — Plan
 
-**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · next: Navigation
+**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · Navigation ✅ · next: Home sections
 **Figma source:** [Design system](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system) (file key `o88Kjupw7MOvSqAC8as9ye`)
 **Goal:** Turn the Figma design system into a real React component library on GitHub that people and AI agents can read, use and build with correctly. Figma stays the source of truth for how things look; code is the source of truth for how they behave.
 
@@ -214,3 +214,11 @@ Between stops Claude works in long stretches and commits after each meaningful s
   - **Tag Selected:** Figma's is 2px shorter because it drops its outline. Code keeps the outline in the fill colour so chips don't jump. *Figma fix (optional):* add a `bg/inverse` 1px stroke to Tag/Selected.
   - **Avatar:** code shows initials when there's no photo. In Figma, switching the Initials layer on in an instance didn't render it, so the fallback can't be previewed there.
   - **Hover springs** (snappy, bouncy) are approximated in CSS with `ease-out` and the duration tokens.
+
+### 11 Nov 2026: Navigation
+- **Built:** Nav link, Header, Mobile menu, Footer, with stories (viewport presets), Code Connect templates and CLAUDE.md rows. Added `@radix-ui/react-dialog` 1.3.1 for the accessible menu: focus moves to Close, Esc closes, focus returns to the toggle.
+- **Comparison** at 360 / 768 / 1280 plus the open menu, light and dark: `docs/verification/nav-figma-vs-code-*.png`, `mobile-menu-figma-vs-code.png`. Header is 80px at every width and Footer is 211px on Desktop, both exactly as in Figma.
+- **Responsive:** Figma's `Breakpoint` variants are automatic. Header switches to small Logo + toggle below 768; nav gap is 24 on Tablet, 32 on Desktop. Footer goes side by side from 768 (Figma has no Tablet footer, so Tablet uses the Desktop layout).
+- **Deliberate differences:** Nav link reserves its bold width, so hovering doesn't shift neighbours (Figma grows 4px). The menu's spring/gentle stagger is approximated with a 40ms CSS delay and `ease-out`.
+- **Privacy:** Header, Mobile menu and Footer require `email` (and `linkedInHref`) as props. Your real address is never written into the library; stories use `hello@example.com`.
+- New: `size-dot` (6px), `animate-menu-in`, `animate-rise`. The token check now allows Tailwind state selectors such as `data-[state=open]:` while still blocking made-up values.

@@ -2,7 +2,8 @@
    Elements marked data-force="hover|pressed|focus" get that state forced by the screenshot script (browser dev tools). */
 import { createRoot } from "react-dom/client";
 import "./visual.css";
-import { Avatar, Button, Divider, Icon, IconButton, Logo, Tag, TextLink } from "../../src";
+import { Avatar, Button, Divider, Footer, Header, Icon, IconButton, Logo, MobileMenu, NavLink, Tag, TextLink } from "../../src";
+import { demoEmail, demoLinkedIn, demoLinks } from "../../src/components/header/demo";
 
 const noop = () => {};
 function Row({ children }: { children: React.ReactNode }) {
@@ -19,6 +20,22 @@ function Pane({ theme, page }: { theme: "light" | "dark"; page: string }) {
             ))}
           </Row>
         ))}
+      {page === "nav" && (
+        <>
+          <Row>
+            <NavLink href="#">Work</NavLink>
+            <NavLink href="#" data-force="hover">Work</NavLink>
+            <NavLink href="#" active>Work</NavLink>
+          </Row>
+          <div className="-mx-24">
+            <Header links={demoLinks} activeHref="/work" email={demoEmail} />
+          </div>
+          <div className="-mx-24 -mb-24">
+            <Footer email={demoEmail} linkedInHref={demoLinkedIn} copyright="© 2026 Kieran Anderson" />
+          </div>
+        </>
+      )}
+      {page === "menu" && <MobileMenu links={demoLinks} activeHref="/work" email={demoEmail} open />}
       {page === "core" && (
         <>
           <Row>
@@ -59,7 +76,7 @@ function Pane({ theme, page }: { theme: "light" | "dark"; page: string }) {
 }
 const page = new URLSearchParams(location.search).get("page") ?? "button";
 createRoot(document.getElementById("root")!).render(
-  <div className="inline-flex flex-col" id="capture">
+  <div className={page === "nav" ? "flex flex-col" : "inline-flex flex-col"} id="capture">
     <Pane theme="light" page={page} />
     <Pane theme="dark" page={page} />
   </div>,

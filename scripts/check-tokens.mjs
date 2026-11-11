@@ -16,7 +16,7 @@ const scanDirs = ["src/components", "src/lib"];
 const rules = [
   { re: /#[0-9a-fA-F]{3,8}\b/, why: "raw hex colour — use a color token class (e.g. bg-surface-default)" },
   { re: /\b(?:rgba?|hsla?|oklch|oklab)\(/, why: "raw colour function — use a color token" },
-  { re: /\b[a-z-]+-\[[^\]]+\]/, why: "Tailwind arbitrary value — use a token utility (p-16, rounded-full, text-h2…)" },
+  { re: /\b[a-z-]+-\[[^\]]+\](?!:)/, why: "Tailwind arbitrary value — use a token utility (p-16, rounded-full, text-h2…)" },
   { re: /style=\{\{[^}]*\d+px/, why: "inline px value — use a spacing/size token" },
 ];
 
