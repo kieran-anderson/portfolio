@@ -1,0 +1,6 @@
+/* Entry stylesheet. Built to dist/styles.css → apps import "ka-design-system/styles.css". */
+@import "tailwindcss";
+@import "./fonts.css";
+@import "./tailwind-theme.css";
+@import "./tokens.css";
+@import "./theme.css";

@@ -28,8 +28,12 @@ import { Button, Icon } from "ka-design-system";
 2. **Use tokens, never raw values.** No hex colours, no `rgb()`, no arbitrary Tailwind values like `p-[13px]` or `text-[#333]`. Use token classes: `bg-surface-default`, `text-text-secondary`, `border-border-divider`, `gap-16`, `p-24`, `rounded-md`. If no token fits, **stop and ask**. Don't invent one.
 3. **Dark mode is automatic.** Semantic tokens change value in dark mode. Don't add `dark:` overrides with other colours. Use `dark:` only to swap *which semantic token* is used, and only when Figma does the same.
 4. **Pick tokens by meaning, not by look.** `color/text/primary` is for body text, even if `color/bg/inverse` happens to be the same colour. Read the token descriptions in `src/styles/tokens.css`.
-5. **Typography comes from text styles.** Use the type classes (`text-display`, `text-h1`, `text-h2`, `text-h3`, `text-body-lg`, `text-body`, `text-body-sm`, `text-caption`, `text-label-button`, `text-label-tag`, `text-link`) instead of setting size, line height and weight separately. Sizes respond to the breakpoint on their own.
-6. **Spacing scale:** 0, 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128 (px). Layout tokens: `layout-margin`, `layout-gutter`, `content-width` (1216 on Desktop), `reading-width` (800), `section`, `section-sm`, `card-padding`, `card-gap`.
+5. **Typography comes from text styles.** Use one type class per text element. It sets size, line height, weight and tracking together, and sizes respond to the breakpoint on their own:
+   `text-display` · `text-h1` · `text-h2` · `text-h3` · `text-body-lg` · `text-body` · `text-body-sm` · `text-caption` · `text-link` · `text-link-sm` · `text-label-button` · `text-label-tag` · `text-overline` (add `uppercase`).
+   Variants of a style change only the weight: Display/Bold = `text-display font-bold`, H3 Regular = `text-h3 font-normal`, Body/Large Medium = `text-body-lg font-medium`, Body/Bold = `text-body font-bold`.
+6. **Spacing: numbers are pixels and must be on the scale.** 0, 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128, so `p-16` = 16px, `gap-8` = 8px. Tailwind's usual numbers (`p-4` = 16px) are switched off, so `p-3` or `gap-6` do nothing. Responsive layout tokens: `px-margin`, `gap-gutter`, `py-section`, `mt-section-sm`, `p-card-padding`, `gap-card-gap`, `max-w-content` (1216 on Desktop), `max-w-reading` (800). Radius: `rounded-sm` 4 · `rounded-md` 8 · `rounded-lg` 16 · `rounded-xl` 20 · `rounded-full` · `rounded-card` (responsive).
+   **Breakpoints** match Figma's Responsive modes: default = Mobile, `tablet:` ≥ 768px, `desktop:` ≥ 1280px. (`sm:`/`md:`/`lg:` don't exist.)
+   **Shadows:** `shadow-elevation-hover` only (cards and tiles on hover). **Motion:** `duration-instant|fast|base|slow`, `ease-out`; springs are in `--motion-spring-*` for JS animation.
 7. **Icons:** only `<Icon name="…" />` from this package (24px, 1.75 stroke). Available names: `arrow-right`, `arrow-left`, `arrow-up-right`, `external`, `mail`, `linkedin`, `menu`, `close`, `plus`, `check`, `play`, `filter`, `sparkle`, `download`. No other icon libraries.
 8. **Accessibility is not optional.** Icon-only buttons need `aria-label`. Keep the visible focus ring. Respect `prefers-reduced-motion` (the motion tokens already do).
 
@@ -58,7 +62,7 @@ API column = intended props. ✅ built · 🟡 planned. Figma links: `https://ww
 
 | Component | Figma node | Status | API |
 |---|---|---|---|
-| Icon | 5:158 | 🟡 | `name` |
+| Icon | 5:158 | ✅ | `name: IconName`, `size?` (24), `label?` (set only when icon-only) |
 | Button | 6:62 | 🟡 | `variant: "primary"\|"secondary"\|"ghost"`, `children`, `icon?`, `disabled?`, `asChild?` |
 | Text link | 6:99 | 🟡 | `children`, `size: "default"\|"small"`, `comingSoon?`, `asChild?` |
 | Tag | 6:108 | 🟡 | `children`, `selected?` |
@@ -102,6 +106,8 @@ Update this table (status, API) whenever a component lands.
 8. Commit with Conventional Commits (`feat(tag): add Tag component`).
 
 ### Tokens
+- Raw CSS variables (`var(--color-text-primary)`, `var(--space-16)`) work anywhere, with or without Tailwind. They're the same names as the Figma variables' code syntax.
+- shadcn's names (`bg-primary`, `text-muted-foreground`, `border-input`, `ring-ring`) are mapped to these tokens in `src/styles/theme.css`. In new code, prefer the Kieran token names.
 - Don't edit `src/styles/tokens.css` or `tokens/figma-variables.json` by hand. They're generated.
 - To refresh tokens: read the variables from Figma (MCP), write `tokens/figma-variables.json`, run `npm run tokens`, review the diff.
 - A missing token is a Figma change first. Raise it with Kieran.

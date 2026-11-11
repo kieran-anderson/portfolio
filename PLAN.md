@@ -1,6 +1,6 @@
 # ka-design-system — Plan
 
-**Status:** Approved 11 Nov 2026. Figma fixes done; next is Stop 1 (theme mapping table).
+**Status:** Approved 11 Nov 2026. Figma fixes ✅ · Stop 1 approved ✅ · tokens, theme and icons ✅ · **blocked: npm package downloads** (needed before Button / Stop 2).
 **Figma source:** [Design system](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system) (file key `o88Kjupw7MOvSqAC8as9ye`)
 **Goal:** Turn the Figma design system into a real React component library on GitHub that people and AI agents can read, use and build with correctly. Figma stays the source of truth for how things look; code is the source of truth for how they behave.
 
@@ -186,3 +186,12 @@ Between stops Claude works in long stretches and commits after each meaningful s
 - **Text styles:** Label/Tag applied to Tag; new **Label/Overline** (Poppins Medium 13, +2%, uppercase) applied to Section header, Next project and Case study hero meta labels.
 - **Bindings:** ~180 gaps, paddings and radii linked to tokens. Re-audit: 0 unbound spacing/radius, 0 hex colours, 0 unstyled text on all pages. **Accepted exceptions:** the Logo "K" mark (artwork) and Hero intro's intentionally mixed text.
 - **Breakpoints** from the grid frames: Tablet ≥ 768px, Desktop ≥ 1280px.
+
+### 11 Nov 2026: Stop 1 approved → tokens, theme, icons
+- Stop 1 table approved as shown; `muted` → `surface/disabled` (Claude's recommendation).
+- `tokens/figma-variables.json` exported from Figma. `tokens/build-tokens.mjs` (no dependencies) generates `src/styles/tokens.css` (plain CSS: light, dark, system, Mobile/Tablet/Desktop) and `src/styles/tailwind-theme.css` (Tailwind's defaults switched off; only our tokens exist; numbers are pixels; `tablet:`/`desktop:` breakpoints).
+- `src/styles/theme.css`: approved shadcn mapping, `dark:` variant, focus ring, reduced motion, duration utilities.
+- `src/icons/Icon.tsx`: the 14 Figma icons as one `<Icon name="…" />` component (stroke = currentColor).
+- `scripts/check-tokens.mjs`: fails on hex/rgb colours, arbitrary `-[…]` values and inline px.
+- **Verified in a headless browser** (`docs/verification/tokens-light-dark.png`): all 20 colour tokens match Figma in light and dark (40 checks); system-dark, forced `.light` and forced `.dark` all resolve correctly; responsive values correct at 375 / 800 / 1300px; all 14 icons draw.
+- **To verify once packages install:** Tailwind accepts the `@custom-variant dark { … @slot }` block form and `--spacing: initial` (switches off numeric spacing).

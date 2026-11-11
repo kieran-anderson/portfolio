@@ -1,0 +1,103 @@
+/*
+ * theme.css — hand-written. Connects shadcn/ui to Kieran's tokens (approved Stop 1 table, 11 Nov 2026)
+ * and sets base styles. Token VALUES are not defined here: they come from tokens.css (generated from Figma).
+ */
+
+/* dark: variant follows the same rule as tokens.css — .dark class, or the device setting unless .light */
+@custom-variant dark {
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:not(.light, .light *)) {
+      @slot;
+    }
+  }
+}
+
+/* shadcn's variable names → our semantic tokens.
+   Declared on :root, .light and .dark so they re-resolve inside a themed subtree. */
+:root,
+.light,
+.dark {
+  --background: var(--color-bg-page);
+  --foreground: var(--color-text-primary);
+  --card: var(--color-surface-default);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-surface-default);
+  --popover-foreground: var(--color-text-primary);
+  --primary: var(--color-bg-inverse);
+  --primary-foreground: var(--color-text-inverse);
+  --secondary: var(--color-surface-default);
+  --secondary-foreground: var(--color-text-primary);
+  --muted: var(--color-surface-disabled);
+  --muted-foreground: var(--color-text-tertiary);
+  --accent: var(--color-surface-default);
+  --accent-foreground: var(--color-text-primary);
+  --destructive: var(--color-feedback-error);
+  --destructive-foreground: var(--color-text-on-error);
+  --border: var(--color-border-divider);
+  --input: var(--color-border-input);
+  --ring: var(--color-focus-ring);
+  --radius: var(--radius-md);
+}
+
+/* Make shadcn's names available as utilities too (bg-primary, text-muted-foreground, ring-ring …) */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* Named motion durations: duration-instant / fast / base / slow */
+@utility duration-instant {
+  transition-duration: var(--duration-instant);
+}
+@utility duration-fast {
+  transition-duration: var(--duration-fast);
+}
+@utility duration-base {
+  transition-duration: var(--duration-base);
+}
+@utility duration-slow {
+  transition-duration: var(--duration-slow);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-family-sans);
+    background-color: var(--color-bg-page);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Keyboard focus: 2px gap in page colour + 2px ring (Figma effect style Focus/Ring). Never remove. */
+  :focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
