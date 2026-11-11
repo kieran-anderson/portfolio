@@ -1,6 +1,6 @@
 # ka-design-system — Plan
 
-**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · Navigation ✅ · next: Home sections
+**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · Navigation ✅ · Home sections ✅ · next: Case study + Playground
 **Figma source:** [Design system](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system) (file key `o88Kjupw7MOvSqAC8as9ye`)
 **Goal:** Turn the Figma design system into a real React component library on GitHub that people and AI agents can read, use and build with correctly. Figma stays the source of truth for how things look; code is the source of truth for how they behave.
 
@@ -222,3 +222,10 @@ Between stops Claude works in long stretches and commits after each meaningful s
 - **Deliberate differences:** Nav link reserves its bold width, so hovering doesn't shift neighbours (Figma grows 4px). The menu's spring/gentle stagger is approximated with a 40ms CSS delay and `ease-out`.
 - **Privacy:** Header, Mobile menu and Footer require `email` (and `linkedInHref`) as props. Your real address is never written into the library; stories use `hello@example.com`.
 - New: `size-dot` (6px), `animate-menu-in`, `animate-rise`. The token check now allows Tailwind state selectors such as `data-[state=open]:` while still blocking made-up values.
+
+### 11 Nov 2026: Home sections
+- **Built:** Hero intro, Section header, Project card, About block, with stories, Code Connect templates and CLAUDE.md rows. Comparison: `docs/verification/home-figma-vs-code-desktop.png` (+ `home-code-mobile.png`). Hero is exactly 1216×332 on Desktop and 688×424 on Tablet, like Figma; the statement wraps identically.
+- **Project card:** the whole card is clickable through its link, but only the link is read out, so it stays accessible. Hover lifts 6px, tilts −0.5°, adds the shadow and zooms the image 3%. In a grid, use `gap-gutter` (32 on Desktop) so cards are Figma's 592px wide.
+- **Hero portrait:** the Avatar is 96 / 160 / 220 by breakpoint. Mobile puts the portrait on top; Tablet and up put it on the right.
+- **Figma fix to consider:** the Project card image's 12px top corners aren't a radius token. Code uses a named `radius-media`. Option: add `radius/media = 12` in Figma and bind it.
+- **Bug found and fixed:** `cn()` didn't know the named sizes clashed with each other, so the Hero portrait came out 220px on Mobile. Named sizes are now registered (this is in the CLAUDE.md rules).

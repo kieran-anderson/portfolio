@@ -132,6 +132,11 @@
   --spacing-mark-sm: 22px; /* Logo mark, Small */
   --spacing-avatar-lg: 220px; /* Avatar Large */
   --spacing-dot: 6px; /* Nav link active indicator */
+  --spacing-portrait-md: 160px; /* Hero intro portrait on Tablet */
+
+  /* Project card image: 12px top corners (not a radius token yet — see PLAN.md Figma fixes) and 528×240 shape */
+  --radius-media: 12px;
+  --aspect-card: 11 / 5;
 
   /* Selection bounce for Tag: 1 → 1.05 → 1 (Figma: spring/bouncy) */
   --animate-pop: ka-pop var(--duration-base) var(--motion-ease-out);
@@ -150,4 +155,10 @@
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
   }
+}
+
+/* Project card hover: lift 6px and tilt −0.5° (Figma description; pair with shadow-elevation-hover). */
+@utility card-lift {
+  translate: 0 -6px;
+  rotate: -0.5deg;
 }

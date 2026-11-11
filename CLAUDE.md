@@ -35,7 +35,7 @@ import { Button, Icon } from "ka-design-system";
    **Breakpoints** match Figma's Responsive modes: default = Mobile, `tablet:` ≥ 768px, `desktop:` ≥ 1280px. (`sm:`/`md:`/`lg:` don't exist.)
    **Shadows:** `shadow-elevation-hover` only (cards and tiles on hover). **Motion:** `duration-instant|fast|base|slow`, `ease-out`; springs are in `--motion-spring-*` for JS animation.
 7. **Icons:** only `<Icon name="…" />` from this package (24px, 1.75 stroke). Available names: `arrow-right`, `arrow-left`, `arrow-up-right`, `external`, `mail`, `linkedin`, `menu`, `close`, `plus`, `check`, `play`, `filter`, `sparkle`, `download`. No other icon libraries.
-8. **Sizes from Figma that aren't spacing tokens** have named utilities (defined in `theme.css`): icons inside components `icon-xs` 16 · `icon-sm` 18 · `icon-md` 20 (line weight kept at 1.75); `size-touch` 44 (minimum touch target); `size-mark` 28 / `size-mark-sm` 22 (Logo); `size-avatar-lg` 220; `border-control` (1.5px outline); `animate-pop` (Tag selection bounce). Add new ones there with a comment saying which Figma component they come from. Never inline the number.
+8. **Sizes from Figma that aren't spacing tokens** have named utilities (defined in `theme.css`): icons inside components `icon-xs` 16 · `icon-sm` 18 · `icon-md` 20 (line weight kept at 1.75); `size-touch` 44 (minimum touch target); `size-mark` 28 / `size-mark-sm` 22 (Logo); `size-avatar-lg` 220; `size-portrait-md` 160 (Hero portrait on Tablet); `size-dot` 6; `rounded-t-media` 12 + `aspect-card` 11/5 (Project card image); `card-lift` (card hover lift + tilt); `border-control` (1.5px outline); `animate-pop` (Tag selection bounce). Add new ones there with a comment saying which Figma component they come from, **and register them in `cn()`'s config in `src/lib/utils.ts`** (otherwise `cn()` can't tell `size-96` and `size-avatar-lg` apart and the wrong one wins). Never inline the number.
 9. **Accessibility is not optional.** Icon-only buttons need `aria-label`. Keep the visible focus ring. Respect `prefers-reduced-motion` (the motion tokens already do).
 
 ### Theme
@@ -77,10 +77,10 @@ API column = intended props. ✅ built · 🟡 planned. Figma links: `https://ww
 | Header | 7:75 | ✅ | `links: NavItem[]`, `email`, `activeHref?`, `cta?` (default "Get in touch" → /contact), `linkAs?`. Responsive; includes Mobile menu below 768 |
 | Mobile menu | 7:76 | ✅ | `links`, `email`, `activeHref?`, `cta?`, `linkAs?`, `open?` + `onOpenChange?` (optional control). Renders its own toggle |
 | Footer | 7:158 | ✅ | `email`, `linkedInHref`, `title?`, `message?`, `copyright?`, `credit?` (defaults from Figma). Responsive |
-| Hero intro | 8:47 | 🟡 | statement (mixed Display Regular/Bold) (responsive) |
-| Section header | 8:48 | 🟡 | `overline`, `title`, `action?` |
-| Project card | 8:217 | 🟡 | `project`, `client`, `description`, `tint`, `status: "live"\|"coming-soon"`, `image` |
-| About block | 8:224 | 🟡 | `showCvLink?` |
+| Hero intro | 8:47 | ✅ | `statement` (ReactNode; bold words in `<strong>`), `previously?` (ReactNode), `disciplines?: string[]`, `portraitSrc?`, `portraitAlt`. Responsive |
+| Section header | 8:48 | ✅ | `overline`, `title`, `action?: { label, href }`, `as?` (heading level, default h2) |
+| Project card | 8:217 | ✅ | `project`, `client?`, `description`, `tint: "blue"\|"mint"\|"peach"`, `status?: "live"\|"coming-soon"`, `href?`, `linkLabel?`, `imageSrc?` + `imageAlt?` or `image?` (own element). Whole card clickable |
+| About block | 8:224 | ✅ | `children` (`<p>` paragraphs), `title?` ("About me"), `cvHref?` (shows "View my CV"), `cvLabel?` |
 | Case study hero | 9:65 | 🟡 | `title`, `summary`, `tint` |
 | Text block | 9:66 | 🟡 | `heading?`, `children` (body) |
 | Image block | 9:80 | 🟡 | `layout: "full-width"\|"inset"\|"side-by-side"`, `caption?` |
