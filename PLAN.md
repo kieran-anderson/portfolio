@@ -246,3 +246,7 @@ Between stops Claude works in long stretches and commits after each meaningful s
 - **iCloud issue:** your Documents folder is synced by iCloud, which created " 2" conflict copies of build folders and one git file while builds ran. Source files weren't affected. I deleted most of them; one (`.git/index 2`) remains and is ignored by git. **Recommendation:** move the project out of iCloud (e.g. `~/Developer/ka-design-system`) before regular use.
 - **Design question (open):** in dark mode, Embed block's player uses `bg/inverse`, so it turns light grey. A video frame is usually dark in both themes. Options: keep it (as Figma), or add a token such as `color/media/backdrop` (ink in both modes).
 - `package.json` now has a `prepare` script, so `npm install github:<user>/ka-design-system` builds `dist/` automatically.
+
+### 11 Nov 2026: Moved out of iCloud
+- The project now lives at `~/Portfolio/KA Design` (not synced by iCloud). All 8 commits, 28 components and `node_modules` moved intact. The last leftover copy (`.git/index 2`) was removed. A full check passes, and no new duplicate copies appeared after a build.
+- Connect **this** folder in future chats (the old `Documents/KA Design` is now empty of the project).
