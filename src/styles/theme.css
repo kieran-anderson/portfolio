@@ -101,3 +101,16 @@
     }
   }
 }
+
+/* Control stroke: Figma's 1.5px outline on Secondary buttons, outline icon buttons and tags. */
+@utility border-control {
+  border-width: 1.5px;
+}
+
+/* Small icon: Figma resizes the 24px icon to 18px inside Buttons but keeps the 1.75px line weight.
+   Scaling an SVG would thin the line, so the stroke is raised to compensate (1.75 × 24 / 18). */
+@utility icon-sm {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.333;
+}

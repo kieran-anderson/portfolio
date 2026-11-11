@@ -1,0 +1,3 @@
+/* Storybook: library styles + scan stories for their layout classes. */
+@import "../src/styles/index.css";
+@source "../src";

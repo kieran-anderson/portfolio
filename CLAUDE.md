@@ -2,7 +2,7 @@
 
 Instructions for any AI agent (Claude or another) that **uses** this design system to build UI, or **extends** it. Read all of this before writing code. If this file and your own habits disagree, this file wins.
 
-> **Status:** planning. Components marked *planned* don't exist yet. Check `src/index.ts` for what's actually exported. The full plan is in `PLAN.md`.
+> **Status:** in progress. Icon and Button are built; components marked 🟡 don't exist yet. Check `src/index.ts` for what's actually exported. The full plan is in `PLAN.md`.
 
 ## What this is
 
@@ -35,7 +35,8 @@ import { Button, Icon } from "ka-design-system";
    **Breakpoints** match Figma's Responsive modes: default = Mobile, `tablet:` ≥ 768px, `desktop:` ≥ 1280px. (`sm:`/`md:`/`lg:` don't exist.)
    **Shadows:** `shadow-elevation-hover` only (cards and tiles on hover). **Motion:** `duration-instant|fast|base|slow`, `ease-out`; springs are in `--motion-spring-*` for JS animation.
 7. **Icons:** only `<Icon name="…" />` from this package (24px, 1.75 stroke). Available names: `arrow-right`, `arrow-left`, `arrow-up-right`, `external`, `mail`, `linkedin`, `menu`, `close`, `plus`, `check`, `play`, `filter`, `sparkle`, `download`. No other icon libraries.
-8. **Accessibility is not optional.** Icon-only buttons need `aria-label`. Keep the visible focus ring. Respect `prefers-reduced-motion` (the motion tokens already do).
+8. **Sizes from Figma that aren't spacing tokens** have named utilities: `icon-sm` (the 18px icon inside buttons, line weight kept at 1.75) and `border-control` (the 1.5px outline on Secondary buttons, outline icon buttons and tags).
+9. **Accessibility is not optional.** Icon-only buttons need `aria-label`. Keep the visible focus ring. Respect `prefers-reduced-motion` (the motion tokens already do).
 
 ### Theme
 - Default: follows the device (light/dark). Force a theme with `class="light"` or `class="dark"` on `<html>`.
@@ -63,7 +64,7 @@ API column = intended props. ✅ built · 🟡 planned. Figma links: `https://ww
 | Component | Figma node | Status | API |
 |---|---|---|---|
 | Icon | 5:158 | ✅ | `name: IconName`, `size?` (24), `label?` (set only when icon-only) |
-| Button | 6:62 | 🟡 | `variant: "primary"\|"secondary"\|"ghost"`, `children`, `icon?`, `disabled?`, `asChild?` |
+| Button | 6:62 | ✅ | `variant: "primary"\|"secondary"\|"ghost"`, `children`, `icon?`, `disabled?`, `asChild?` |
 | Text link | 6:99 | 🟡 | `children`, `size: "default"\|"small"`, `comingSoon?`, `asChild?` |
 | Tag | 6:108 | 🟡 | `children`, `selected?` |
 | Icon button | 6:139 | 🟡 | `icon`, `variant: "filled"\|"outline"`, `aria-label` (required) |
@@ -97,11 +98,13 @@ Update this table (status, API) whenever a component lands.
 ## Extending the system (adding or changing a component)
 
 1. **Read Figma first**, with the Figma MCP: `get_design_context` and `get_screenshot` for the node, `get_variable_defs` for tokens. Use the component's Figma **description** as its docs text.
-2. **Start from shadcn** when an equivalent exists (button, toggle, avatar, separator, sheet, tabs…), then restyle with tokens only. Delete shadcn's default colours and radii; don't layer on top of them.
+2. **Start from shadcn** when an equivalent exists (button, toggle, avatar, separator, sheet, tabs…), then restyle with tokens only. Delete shadcn's default colours and radii; don't layer on top of them. If you use the shadcn CLI to add a component, **undo any changes it makes to CSS files**. The theme is already wired in `theme.css`.
 3. Follow the **naming rules** above. Put a one-line JSDoc comment on every prop.
-4. Files: `src/components/<name>/{Name.tsx, Name.stories.tsx, Name.figma.tsx, index.ts}`; export from `src/index.ts`.
+4. Files: `src/components/<name>/{Name.tsx, Name.stories.tsx, Name.figma.ts, index.ts}`; export from `src/index.ts`. Copy the shape of `src/components/button/` exactly.
+   Combine classes with `cn()` from `@/lib/utils`. If you add a new custom utility class, register it in the `extendTailwindMerge` config there, or `cn()` may silently drop it.
+   Tailwind only scans `src/components` and `src/icons` (see `src/styles/index.css`). A new source folder needs its own `@source` line.
 5. **Storybook:** a story per Figma variant, with light/dark and breakpoint toolbars.
-6. **Code Connect:** map every Figma property in `Name.figma.tsx`; run `npx figma connect parse` to check it. **Never run `figma connect publish`.** Kieran publishes.
+6. **Code Connect:** write a **template file** `Name.figma.ts` (Code Connect CLI v2 format, *not* the old `figma.connect()` React format). It starts with `// url=…`, `// source=…`, `// component=…` comments, reads Figma properties with `figma.selectedInstance.getEnum/getString/getBoolean/getInstanceSwap`, and exports `{ example: figma.code`…`, imports, id, metadata: { nestable: true } }`. Map every Figma property; hover/pressed/focus states map to nothing. Check it with `npm run figma:parse`. **Never run `figma connect publish`.** Kieran publishes.
 7. **Check:** `npm run lint`, `npm run typecheck`, `npm run build`, `npm run check:tokens` (fails on raw values); compare a Storybook screenshot with Figma in light and dark.
 8. Commit with Conventional Commits (`feat(tag): add Tag component`).
 

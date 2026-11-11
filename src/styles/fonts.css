@@ -1,5 +1,6 @@
-/* Poppins, bundled via Fontsource (no request to Google). Weights used by the Figma text styles. */
-@import "@fontsource/poppins/400.css";
-@import "@fontsource/poppins/500.css";
-@import "@fontsource/poppins/600.css";
-@import "@fontsource/poppins/700.css";
+/* Poppins, bundled via Fontsource (no request to Google). Latin character set only, to keep the CSS small
+   (covers English plus accented Western European letters). Weights used by the Figma text styles. */
+@import "@fontsource/poppins/latin-400.css";
+@import "@fontsource/poppins/latin-500.css";
+@import "@fontsource/poppins/latin-600.css";
+@import "@fontsource/poppins/latin-700.css";

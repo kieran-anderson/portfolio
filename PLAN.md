@@ -1,6 +1,6 @@
 # ka-design-system — Plan
 
-**Status:** Approved 11 Nov 2026. Figma fixes ✅ · Stop 1 approved ✅ · tokens, theme and icons ✅ · **blocked: npm package downloads** (needed before Button / Stop 2).
+**Status:** Figma fixes ✅ · Stop 1 approved ✅ · tokens, theme, icons ✅ · Button ✅ · **🛑 Stop 2: waiting for Kieran to review Button**
 **Figma source:** [Design system](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system) (file key `o88Kjupw7MOvSqAC8as9ye`)
 **Goal:** Turn the Figma design system into a real React component library on GitHub that people and AI agents can read, use and build with correctly. Figma stays the source of truth for how things look; code is the source of truth for how they behave.
 
@@ -78,7 +78,7 @@ ka-design-system/            ← this folder ("KA Design")
 │  │  └─ button/
 │  │     ├─ Button.tsx
 │  │     ├─ Button.stories.tsx
-│  │     ├─ Button.figma.tsx ← Code Connect
+│  │     ├─ Button.figma.ts  ← Code Connect template
 │  │     └─ index.ts
 │  ├─ lib/utils.ts           ← cn() class helper (shadcn)
 │  └─ index.ts               ← public exports
@@ -126,7 +126,7 @@ Links: components that can be links (Button, Text link, Nav link, Logo) accept `
 
 ## 8. Code Connect
 
-- One `*.figma.tsx` per component, pointing at its Figma node (IDs in CLAUDE.md).
+- One `*.figma.ts` **template file** per component (Code Connect CLI v2 removed the old React `figma.connect()` format), pointing at its Figma node (IDs in CLAUDE.md).
 - `figma.config.json` holds the Figma file URL; **no tokens are stored in the repo**.
 - **Your plan:** Figma Professional supports Code Connect (one library and one framework). Mappings can't be created through the Figma MCP on Professional, so **you publish them** with `npx figma connect publish` and your own access token. Some Professional users reported in Oct 2026 that the Code Connect token permission was missing. If we hit that, it's a Figma support issue, and the files stay ready.
 - **Before publishing:** the Figma file must be published as a team library.
@@ -195,3 +195,13 @@ Between stops Claude works in long stretches and commits after each meaningful s
 - `scripts/check-tokens.mjs`: fails on hex/rgb colours, arbitrary `-[…]` values and inline px.
 - **Verified in a headless browser** (`docs/verification/tokens-light-dark.png`): all 20 colour tokens match Figma in light and dark (40 checks); system-dark, forced `.light` and forced `.dark` all resolve correctly; responsive values correct at 375 / 800 / 1300px; all 14 icons draw.
 - **To verify once packages install:** Tailwind accepts the `@custom-variant dark { … @slot }` block form and `--spacing: initial` (switches off numeric spacing).
+
+### 11 Nov 2026: Packages installed → Button (Stop 2)
+- Installed (pinned): React 19.3, Vite 8.3, Tailwind 4.3, Storybook 10.6 (+ docs, themes, a11y), TypeScript **6.0** (7.0 is the new native compiler; Storybook and type generation don't support it yet), Code Connect CLI 2.1, cva, clsx, tailwind-merge, Radix Slot, Fontsource Poppins (Latin set only: CSS went from 689 kB to 119 kB).
+- **Tailwind checks passed:** the `dark:` variant follows class + system; `tablet:`/`desktop:` at 768/1280; off-scale `p-3`, `gap-6` and `sm:` are not generated; Tailwind's default colours are gone.
+- **Button** (`src/components/button`) built on shadcn's Button pattern (cva + Radix Slot), restyled to tokens. Props: `variant`, `children`, `icon`, `disabled`, `asChild`. Stories: Playground, each variant, Disabled, AsLink, AllVariants.
+- **Matches Figma** (`docs/verification/button-figma-vs-code.png`): 160×44 on Mobile/Tablet like Figma (46 on Desktop in both, because Label/Button grows to 15/22). Colours, hover lift and 4px icon nudge, 90% pressed and disabled match in light and dark. Fixes found by comparing: icon is 18px inside buttons (`icon-sm`, line weight kept at 1.75); Secondary outline restored (`cn()` was dropping `border-control`).
+- **Code Connect:** CLI v2 no longer accepts React `figma.connect()` files, so `Button.figma.ts` and `Icon.figma.ts` are written as v2 **templates**. `npm run figma:parse` passes. Button's snippet embeds the swapped icon's own snippet, e.g. `<Button icon={<Icon name="arrow-right" />}>Get in touch</Button>`.
+- **Storybook** builds; telemetry is off. Verified in a browser: the Light/Dark toolbar switches `<html class>`, and Poppins loads.
+- **Figma issue found:** the Focus/Ring effect doesn't render in Figma. Spread shadows don't draw on these frames, and turning on Clip content cut off the pill ends, so that was reverted. Code shows the ring correctly. Options are in the Stop 2 message.
+- The `node_modules` folder was installed by Claude's Linux workspace. If you ever run `npm` directly in Terminal on your Mac, run `npm install` first so the Mac versions of the build tools are fetched.
