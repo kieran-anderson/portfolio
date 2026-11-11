@@ -18,7 +18,7 @@
 | Icons | **Export Kieran's 14 Figma icons** as React components | `<Icon name="arrow-right" />` draws exactly what's in Figma. No Lucide. |
 | Button extras | **Add a Disabled state** (no extra sizes) | Needs the new `color/text/disabled` token. |
 | Package name | **`ka-design-system`** | `import { Button } from "ka-design-system"` |
-| Distribution | **Private GitHub repo, no npm** | Apps install with `npm install github:<your-username>/ka-design-system`. |
+| Distribution | **Private GitHub repo, no npm** | Repo: `kieran-anderson/portfolio` (private). Apps install with `npm install github:kieran-anderson/portfolio`; imports still say `ka-design-system`. |
 | Off-scale spacing (6px, 10px) | **Snap to the existing scale** | Each change is listed for review (6 → 4 or 8, 10 → 8 or 12, by eye). |
 | Text props | **Main label = children**; other text = named props | `<Button>Get in touch</Button>`, `<PullQuote quote="…" attribution="…" />` |
 
@@ -245,7 +245,7 @@ Between stops Claude works in long stretches and commits after each meaningful s
 - **Bug found and fixed:** after the tints moved to `src/lib/tint.ts`, Tailwind wasn't scanning `src/lib`, so the mint and peach backgrounds were missing (Case study and Project card included). `@source "../lib"` was added, and `npm run check` now fails if any tint class is missing from the built CSS.
 - **iCloud issue:** your Documents folder is synced by iCloud, which created " 2" conflict copies of build folders and one git file while builds ran. Source files weren't affected. I deleted most of them; one (`.git/index 2`) remains and is ignored by git. **Recommendation:** move the project out of iCloud (e.g. `~/Developer/ka-design-system`) before regular use.
 - **Design question (open):** in dark mode, Embed block's player uses `bg/inverse`, so it turns light grey. A video frame is usually dark in both themes. Options: keep it (as Figma), or add a token such as `color/media/backdrop` (ink in both modes).
-- `package.json` now has a `prepare` script, so `npm install github:<user>/ka-design-system` builds `dist/` automatically.
+- `package.json` now has a `prepare` script, so `npm install github:kieran-anderson/portfolio` builds `dist/` automatically.
 
 ### 11 Nov 2026: Moved out of iCloud
 - The project now lives at `~/Portfolio/KA Design` (not synced by iCloud). All 8 commits, 28 components and `node_modules` moved intact. The last leftover copy (`.git/index 2`) was removed. A full check passes, and no new duplicate copies appeared after a build.

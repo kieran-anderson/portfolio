@@ -6,7 +6,7 @@ Instructions for any AI agent (Claude or another) that **uses** this design syst
 
 ## What this is
 
-`ka-design-system` is Kieran Anderson's React component library. It's built from the Figma file [Design system](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system) (file key `o88Kjupw7MOvSqAC8as9ye`).
+`ka-design-system` is Kieran Anderson's React component library (GitHub repo: `kieran-anderson/portfolio`; the package and import name stay `ka-design-system`). It's built from the Figma file [Design system](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system) (file key `o88Kjupw7MOvSqAC8as9ye`).
 Stack: Vite (library mode) · React · TypeScript · Tailwind CSS v4 · shadcn/ui (restyled to these tokens) · Storybook · Figma Code Connect.
 
 **Figma is the source of truth for appearance; this repo is the source of truth for behaviour and API.**
@@ -14,7 +14,7 @@ Stack: Vite (library mode) · React · TypeScript · Tailwind CSS v4 · shadcn/u
 ## Using the system (building an app or page)
 
 ```bash
-npm install github:<github-username>/ka-design-system   # private repo; username to be filled in
+npm install github:kieran-anderson/portfolio   # private repo: needs GitHub access to kieran-anderson/portfolio
 ```
 ```tsx
 import "ka-design-system/styles.css";   // once, at the app root: tokens, theme, Poppins

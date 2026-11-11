@@ -3,7 +3,7 @@
 Kieran Anderson's design system as React components, built from the [Figma file](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system).
 
 ```bash
-npm install github:<github-username>/ka-design-system
+npm install github:kieran-anderson/portfolio
 ```
 ```tsx
 import "ka-design-system/styles.css";
