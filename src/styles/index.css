@@ -2,6 +2,7 @@
 @import "tailwindcss" source(none);
 @source "../components";
 @source "../icons";
+@source "../lib";
 @import "./fonts.css";
 @import "./tailwind-theme.css";
 @import "./tokens.css";

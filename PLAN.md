@@ -1,6 +1,6 @@
 # ka-design-system — Plan
 
-**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · Navigation ✅ · Home sections ✅ · Case study ✅ · next: Playground
+**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · Navigation ✅ · Home sections ✅ · Case study ✅ · Playground ✅ · **🛑 Stop 3: ready to push to GitHub and publish Code Connect (Kieran runs these)**
 **Figma source:** [Design system](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system) (file key `o88Kjupw7MOvSqAC8as9ye`)
 **Goal:** Turn the Figma design system into a real React component library on GitHub that people and AI agents can read, use and build with correctly. Figma stays the source of truth for how things look; code is the source of truth for how they behave.
 
@@ -237,3 +237,12 @@ Between stops Claude works in long stretches and commits after each meaningful s
 - **Accessibility:** meta facts are a description list; process steps are an ordered list (screen readers hear "Step 01: Discover"); quotes use `figure`/`blockquote`; Next project is one link with a decorative arrow (no link-inside-a-link).
 - **Not built yet (motion):** "reveal on scroll" (images fade and rise 24px; stats count up) needs a small scroll-trigger helper. Proposed as a follow-up; until then, content simply appears.
 - New: shared `Tint` type, `max-w-title` (900), `aspect-cover`/`wide`/`inset`/`pair`.
+
+### 11 Nov 2026: Playground → all 28 components built
+- **Built:** Experiment tile, Filter tabs, Embed block. Comparison: `docs/verification/playground-figma-vs-code.png`. Tiles are 384×477 (Figma 478); the embed is 800 wide. Tested in a browser: Play loads the embed, and filter chips report `aria-pressed`.
+- **Embed block** loads the third-party player only after Play is pressed (speed and privacy).
+- **Experiment tile glyph** is 24px: the Figma instance frame is 48px, but the drawing inside stays 24.
+- **Bug found and fixed:** after the tints moved to `src/lib/tint.ts`, Tailwind wasn't scanning `src/lib`, so the mint and peach backgrounds were missing (Case study and Project card included). `@source "../lib"` was added, and `npm run check` now fails if any tint class is missing from the built CSS.
+- **iCloud issue:** your Documents folder is synced by iCloud, which created " 2" conflict copies of build folders and one git file while builds ran. Source files weren't affected. I deleted most of them; one (`.git/index 2`) remains and is ignored by git. **Recommendation:** move the project out of iCloud (e.g. `~/Developer/ka-design-system`) before regular use.
+- **Design question (open):** in dark mode, Embed block's player uses `bg/inverse`, so it turns light grey. A video frame is usually dark in both themes. Options: keep it (as Figma), or add a token such as `color/media/backdrop` (ink in both modes).
+- `package.json` now has a `prepare` script, so `npm install github:<user>/ka-design-system` builds `dist/` automatically.

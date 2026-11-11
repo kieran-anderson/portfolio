@@ -5,6 +5,7 @@ import "./visual.css";
 import { AboutBlock, Avatar, Button, Divider, Footer, Header, HeroIntro, Icon, IconButton, Logo, MobileMenu, NavLink, ProjectCard, SectionHeader, Tag, TextLink } from "../../src";
 import { demoEmail, demoLinkedIn, demoLinks } from "../../src/components/header/demo";
 import { demoCaseStudy as d, demoImage } from "../../src/components/case-study-hero/demo";
+import { EmbedBlock, ExperimentTile, FilterTabs } from "../../src";
 import { CaseStudyHero, ImageBlock, KeyStats, NextProject, OutcomeSummary, ProcessSteps, PullQuote, TextBlock } from "../../src";
 
 const noop = () => {};
@@ -69,6 +70,22 @@ function Pane({ theme, page }: { theme: "light" | "dark"; page: string }) {
           <KeyStats stats={d.stats} />
           <OutcomeSummary items={d.outcomes} tint="blue" />
           <NextProject title="Ops Docs Automation – Barclays" tint="blue" href="#" />
+        </div>
+      )}
+      {page === "play" && (
+        <div className="flex flex-col gap-40">
+          <FilterTabs options={["All", "AI tools", "Prototypes", "Motion", "Code"]} value="All" onValueChange={noop} />
+          <div className="flex w-max gap-32">
+            {(["default", "hover"] as const).map((st) => (
+              <div key={st} className="w-[384px]">{/* tokens-ok: Figma tile width */}
+                <ExperimentTile data-force={st} title="Prompt-to-component" description="A Claude + Figma workflow that turns a written brief into a tokenised component." tags={["AI", "Prototype"]} href="#" />
+              </div>
+            ))}
+            <div className="w-[384px]">
+              <ExperimentTile media="video" title="Prompt-to-component" description="A Claude + Figma workflow that turns a written brief into a tokenised component." tags={["AI", "Prototype"]} href="#" />
+            </div>
+          </div>
+          <EmbedBlock src="about:blank" title="Demo" caption="Demo — generating a project card from a prompt (0:42)" />
         </div>
       )}
       {page === "menu" && <MobileMenu links={demoLinks} activeHref="/work" email={demoEmail} open />}

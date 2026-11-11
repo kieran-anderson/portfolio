@@ -44,3 +44,15 @@ if (problems.length) {
   process.exit(1);
 }
 console.log(`✔ token check passed (${files.length} files)`);
+
+// Built CSS must contain every tint background (catches Tailwind not scanning a folder).
+import { existsSync } from "node:fs";
+const built = resolve(root, "dist/styles.css");
+if (existsSync(built)) {
+  const css = readFileSync(built, "utf8");
+  const missing = ["blue", "mint", "peach"].filter((t) => !css.includes(`.bg-surface-${t}`));
+  if (missing.length) {
+    console.error(`✖ dist/styles.css is missing tint classes: ${missing.join(", ")} — check @source in src/styles/index.css`);
+    process.exit(1);
+  }
+}

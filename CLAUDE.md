@@ -2,7 +2,7 @@
 
 Instructions for any AI agent (Claude or another) that **uses** this design system to build UI, or **extends** it. Read all of this before writing code. If this file and your own habits disagree, this file wins.
 
-> **Status:** in progress. Icon and Button are built; components marked 🟡 don't exist yet. Check `src/index.ts` for what's actually exported. The full plan is in `PLAN.md`.
+> **Status:** all 28 Figma components + Icon are built (v0.1.0). See `src/index.ts` for exports. Check `src/index.ts` for what's actually exported. The full plan is in `PLAN.md`.
 
 ## What this is
 
@@ -91,9 +91,9 @@ API column = intended props. ✅ built · 🟡 planned. Figma links: `https://ww
 | Key stats | 13:141 | ✅ | `stats: { value, label }[]` (stacked Mobile, row from Tablet) |
 | Outcome summary | 9:172 | ✅ | `items: string[]`, `tint`, `title?` ("Outcome") |
 | Next project | 9:261 | ✅ | `title`, `tint`, `href`, `overline?`, `asChild?` (empty router link). Whole card is one link |
-| Experiment tile | 11:96 | 🟡 | `title`, `description`, `media: "image"\|"video"` |
-| Filter tabs | 11:99 | 🟡 | `options`, `value`, `onValueChange` |
-| Embed block | 11:110 | 🟡 | `src`, `caption?` |
+| Experiment tile | 11:96 | ✅ | `title`, `description`, `href`, `tags?`, `media?: "image"\|"video"`, `tint?` (default mint), `mediaSrc?` + `mediaAlt?`, `glyph?` (IconName), `linkLabel?` |
+| Filter tabs | 11:99 | ✅ | `options: string[]`, `value`, `onValueChange`, `label?` (screen-reader name) |
+| Embed block | 11:110 | ✅ | `src`, `title` (required), `caption?`, `posterSrc?`. Loads only after Play is pressed |
 
 Update this table (status, API) whenever a component lands.
 
@@ -104,7 +104,7 @@ Update this table (status, API) whenever a component lands.
 3. Follow the **naming rules** above. Put a one-line JSDoc comment on every prop.
 4. Files: `src/components/<name>/{Name.tsx, Name.stories.tsx, Name.figma.ts, index.ts}`; export from `src/index.ts`. Copy the shape of `src/components/button/` exactly.
    Combine classes with `cn()` from `@/lib/utils`. If you add a new custom utility class, register it in the `extendTailwindMerge` config there, or `cn()` may silently drop it.
-   Tailwind only scans `src/components` and `src/icons` (see `src/styles/index.css`). A new source folder needs its own `@source` line.
+   Tailwind only scans `src/components`, `src/icons` and `src/lib` (see `src/styles/index.css`). A new source folder needs its own `@source` line, or its classes silently won't exist. `npm run check` fails if the tint classes are missing.
 5. **Storybook:** a story per Figma variant, with light/dark and breakpoint toolbars.
 6. **Code Connect:** write a **template file** `Name.figma.ts` (Code Connect CLI v2 format, *not* the old `figma.connect()` React format). It starts with `// url=…`, `// source=…`, `// component=…` comments, reads Figma properties with `figma.selectedInstance.getEnum/getString/getBoolean/getInstanceSwap`, and exports `{ example: figma.code`…`, imports, id, metadata: { nestable: true } }`. Map every Figma property; hover/pressed/focus states map to nothing. Check it with `npm run figma:parse`. **Never run `figma connect publish`.** Kieran publishes.
 7. **Check:** `npm run lint`, `npm run typecheck`, `npm run build`, `npm run check:tokens` (fails on raw values); compare a Storybook screenshot with Figma in light and dark.

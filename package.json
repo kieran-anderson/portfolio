@@ -28,8 +28,9 @@
     "build": "npm run tokens && vite build",
     "typecheck": "tsc --noEmit",
     "check:tokens": "node scripts/check-tokens.mjs",
-    "check": "npm run check:tokens && npm run typecheck && npm run build",
-    "figma:parse": "figma connect parse"
+    "check": "npm run typecheck && npm run build && npm run check:tokens",
+    "figma:parse": "figma connect parse",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": ">=18",
