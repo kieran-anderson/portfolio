@@ -107,10 +107,35 @@
   border-width: 1.5px;
 }
 
-/* Small icon: Figma resizes the 24px icon to 18px inside Buttons but keeps the 1.75px line weight.
-   Scaling an SVG would thin the line, so the stroke is raised to compensate (1.75 × 24 / 18). */
+/* Icon sizes used inside components. Figma resizes the 24px icon but keeps the 1.75px line weight,
+   so the SVG stroke is raised to compensate (1.75 × 24 / size). Default <Icon> is 24px. */
+@utility icon-xs {
+  width: 16px; /* Text link Small */
+  height: 16px;
+  stroke-width: 2.625;
+}
 @utility icon-sm {
-  width: 18px;
+  width: 18px; /* Button, Text link Default */
   height: 18px;
   stroke-width: 2.333;
+}
+@utility icon-md {
+  width: 20px; /* Icon button */
+  height: 20px;
+  stroke-width: 2.1;
+}
+
+/* Fixed component sizes from Figma that aren't spacing tokens (size-touch, size-mark, …). */
+@theme {
+  --spacing-touch: 44px; /* Minimum touch target: Icon button */
+  --spacing-mark: 28px; /* Logo mark, Default */
+  --spacing-mark-sm: 22px; /* Logo mark, Small */
+  --spacing-avatar-lg: 220px; /* Avatar Large */
+
+  /* Selection bounce for Tag: 1 → 1.05 → 1 (Figma: spring/bouncy) */
+  --animate-pop: ka-pop var(--duration-base) var(--motion-ease-out);
+  @keyframes ka-pop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
 }

@@ -35,7 +35,7 @@ import { Button, Icon } from "ka-design-system";
    **Breakpoints** match Figma's Responsive modes: default = Mobile, `tablet:` ≥ 768px, `desktop:` ≥ 1280px. (`sm:`/`md:`/`lg:` don't exist.)
    **Shadows:** `shadow-elevation-hover` only (cards and tiles on hover). **Motion:** `duration-instant|fast|base|slow`, `ease-out`; springs are in `--motion-spring-*` for JS animation.
 7. **Icons:** only `<Icon name="…" />` from this package (24px, 1.75 stroke). Available names: `arrow-right`, `arrow-left`, `arrow-up-right`, `external`, `mail`, `linkedin`, `menu`, `close`, `plus`, `check`, `play`, `filter`, `sparkle`, `download`. No other icon libraries.
-8. **Sizes from Figma that aren't spacing tokens** have named utilities: `icon-sm` (the 18px icon inside buttons, line weight kept at 1.75) and `border-control` (the 1.5px outline on Secondary buttons, outline icon buttons and tags).
+8. **Sizes from Figma that aren't spacing tokens** have named utilities (defined in `theme.css`): icons inside components `icon-xs` 16 · `icon-sm` 18 · `icon-md` 20 (line weight kept at 1.75); `size-touch` 44 (minimum touch target); `size-mark` 28 / `size-mark-sm` 22 (Logo); `size-avatar-lg` 220; `border-control` (1.5px outline); `animate-pop` (Tag selection bounce). Add new ones there with a comment saying which Figma component they come from. Never inline the number.
 9. **Accessibility is not optional.** Icon-only buttons need `aria-label`. Keep the visible focus ring. Respect `prefers-reduced-motion` (the motion tokens already do).
 
 ### Theme
@@ -55,7 +55,7 @@ import { Button, Icon } from "ka-design-system";
 | `State` Selected / Active / Disabled / Coming soon | boolean props `selected` / `active` / `disabled` / `comingSoon` |
 | `Breakpoint` | not a prop: responds to screen size |
 
-Linkable components (Button, Text link, Nav link, Logo) take `asChild` to render as your router's `<Link>` or an `<a>`.
+Linkable components (Button, Text link, Icon button, Logo, Nav link) take `asChild` to render as your router's `<Link>` or an `<a>`. Button and Text link: put the label inside your link. Icon button and Logo: pass an **empty** link; the icon or wordmark is inserted for you.
 
 ## Component table
 
@@ -65,12 +65,12 @@ API column = intended props. ✅ built · 🟡 planned. Figma links: `https://ww
 |---|---|---|---|
 | Icon | 5:158 | ✅ | `name: IconName`, `size?` (24), `label?` (set only when icon-only) |
 | Button | 6:62 | ✅ | `variant: "primary"\|"secondary"\|"ghost"`, `children`, `icon?`, `disabled?`, `asChild?` |
-| Text link | 6:99 | 🟡 | `children`, `size: "default"\|"small"`, `comingSoon?`, `asChild?` |
-| Tag | 6:108 | 🟡 | `children`, `selected?` |
-| Icon button | 6:139 | 🟡 | `icon`, `variant: "filled"\|"outline"`, `aria-label` (required) |
-| Avatar | 6:148 | 🟡 | `src`, `alt`, `size: "small"\|"medium"\|"large"` |
-| Divider | 6:149 | 🟡 | — |
-| Logo | 6:158 | 🟡 | `size: "default"\|"small"`, `asChild?` |
+| Text link | 6:99 | ✅ | `children`, `href`, `size: "default"\|"small"`, `comingSoon?` (no arrow, not a link), `asChild?` |
+| Tag | 6:108 | ✅ | `children`; filter chip: `selected?` + `onClick?` (renders a toggle button with `aria-pressed`) |
+| Icon button | 6:139 | ✅ | `icon`, `aria-label` (required), `variant: "filled"\|"outline"`, `asChild?` (pass an empty `<a href>`) |
+| Avatar | 6:148 | ✅ | `alt` (required), `src?`, `size: "small"\|"medium"\|"large"`, `initials?` (fallback, default from `alt`) |
+| Divider | 6:149 | ✅ | — (renders `<hr>`, fills its container) |
+| Logo | 6:158 | ✅ | `size: "default"\|"small"`, `href?` (default "/"), `asChild?` (pass an empty router `<Link>`) |
 | Nav link | 7:11 | 🟡 | `children`, `active?`, `asChild?` |
 | Header | 7:75 | 🟡 | `links`, `activeHref?` (responsive) |
 | Mobile menu | 7:76 | 🟡 | `open`, `onOpenChange`, `links` |

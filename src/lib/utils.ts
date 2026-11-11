@@ -5,7 +5,7 @@ import { extendTailwindMerge } from "tailwind-merge";
  * Teach tailwind-merge our custom type classes, so `text-h1` (a font size) and `text-text-primary`
  * (a colour) are never treated as duplicates of each other.
  */
-const twMerge = extendTailwindMerge({
+const twMerge = extendTailwindMerge<"icon">({
   extend: {
     classGroups: {
       "font-size": [
@@ -13,6 +13,7 @@ const twMerge = extendTailwindMerge({
       ],
       shadow: [{ shadow: ["elevation-hover", "focus-ring"] }],
       "border-w": [{ border: ["control"] }],
+      icon: ["icon-xs", "icon-sm", "icon-md"],
     },
   },
 });

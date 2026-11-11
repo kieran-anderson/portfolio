@@ -1,6 +1,6 @@
 # ka-design-system — Plan
 
-**Status:** Figma fixes ✅ · Stop 1 approved ✅ · tokens, theme, icons ✅ · Button ✅ · **🛑 Stop 2: waiting for Kieran to review Button**
+**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · next: Navigation
 **Figma source:** [Design system](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system) (file key `o88Kjupw7MOvSqAC8as9ye`)
 **Goal:** Turn the Figma design system into a real React component library on GitHub that people and AI agents can read, use and build with correctly. Figma stays the source of truth for how things look; code is the source of truth for how they behave.
 
@@ -205,3 +205,12 @@ Between stops Claude works in long stretches and commits after each meaningful s
 - **Storybook** builds; telemetry is off. Verified in a browser: the Light/Dark toolbar switches `<html class>`, and Poppins loads.
 - **Figma issue found:** the Focus/Ring effect doesn't render in Figma. Spread shadows don't draw on these frames, and turning on Clip content cut off the pill ends, so that was reverted. Code shows the ring correctly. Options are in the Stop 2 message.
 - The `node_modules` folder was installed by Claude's Linux workspace. If you ever run `npm` directly in Terminal on your Mac, run `npm install` first so the Mac versions of the build tools are fetched.
+
+### 11 Nov 2026: Stop 2 approved → focus ring in Figma, Core basics
+- Stop 2 approved, including option 1: Button's three Focus variants now have a real **"Focus ring"** layer (absolute, 2px `focus/ring` stroke, 2px gap, `radius/full`) instead of the effect that Figma doesn't draw. The Focus/Ring effect style is kept and described as reference only.
+- **Built:** Text link, Tag, Icon button, Avatar, Divider, Logo, each with stories, a Code Connect template, and a CLAUDE.md row. Comparison: `docs/verification/core-figma-vs-code.png`, Mobile mode, light and dark. All sizes match Figma within 1px of text rendering.
+- New named sizes in `theme.css`: `icon-xs` 16, `icon-md` 20, `size-touch` 44, `size-mark` 28, `size-mark-sm` 22, `size-avatar-lg` 220, plus `animate-pop` (Tag bounce).
+- **Small deliberate differences from Figma:**
+  - **Tag Selected:** Figma's is 2px shorter because it drops its outline. Code keeps the outline in the fill colour so chips don't jump. *Figma fix (optional):* add a `bg/inverse` 1px stroke to Tag/Selected.
+  - **Avatar:** code shows initials when there's no photo. In Figma, switching the Initials layer on in an instance didn't render it, so the fallback can't be previewed there.
+  - **Hover springs** (snappy, bouncy) are approximated in CSS with `ease-out` and the duration tokens.
