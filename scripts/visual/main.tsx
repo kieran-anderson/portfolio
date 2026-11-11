@@ -4,6 +4,8 @@ import { createRoot } from "react-dom/client";
 import "./visual.css";
 import { AboutBlock, Avatar, Button, Divider, Footer, Header, HeroIntro, Icon, IconButton, Logo, MobileMenu, NavLink, ProjectCard, SectionHeader, Tag, TextLink } from "../../src";
 import { demoEmail, demoLinkedIn, demoLinks } from "../../src/components/header/demo";
+import { demoCaseStudy as d, demoImage } from "../../src/components/case-study-hero/demo";
+import { CaseStudyHero, ImageBlock, KeyStats, NextProject, OutcomeSummary, ProcessSteps, PullQuote, TextBlock } from "../../src";
 
 const noop = () => {};
 function Row({ children }: { children: React.ReactNode }) {
@@ -57,6 +59,18 @@ function Pane({ theme, page }: { theme: "light" | "dark"; page: string }) {
           </AboutBlock>
         </div>
       )}
+      {page === "case" && (
+        <div className="mx-auto flex w-full max-w-content flex-col gap-40">
+          <CaseStudyHero client={d.client} title={d.title} summary={d.summary} meta={d.meta} tint="blue" />
+          <TextBlock heading="The problem">{d.problem}</TextBlock>
+          <ImageBlock layout="inset" images={[{ src: demoImage(800, 480), alt: "" }]} caption="Figure 1 — The old help centre buried answers three levels deep" />
+          <PullQuote quote={d.quote} attribution="Customer interview, round 2" />
+          <ProcessSteps steps={d.steps} />
+          <KeyStats stats={d.stats} />
+          <OutcomeSummary items={d.outcomes} tint="blue" />
+          <NextProject title="Ops Docs Automation – Barclays" tint="blue" href="#" />
+        </div>
+      )}
       {page === "menu" && <MobileMenu links={demoLinks} activeHref="/work" email={demoEmail} open />}
       {page === "core" && (
         <>
@@ -98,7 +112,7 @@ function Pane({ theme, page }: { theme: "light" | "dark"; page: string }) {
 }
 const page = new URLSearchParams(location.search).get("page") ?? "button";
 createRoot(document.getElementById("root")!).render(
-  <div className={page === "nav" || page === "home" ? "flex flex-col" : "inline-flex flex-col"} id="capture">
+  <div className={page === "nav" || page === "home" || page === "case" ? "flex flex-col" : "inline-flex flex-col"} id="capture">
     <Pane theme="light" page={page} />
     <Pane theme="dark" page={page} />
   </div>,

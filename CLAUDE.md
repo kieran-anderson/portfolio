@@ -35,12 +35,12 @@ import { Button, Icon } from "ka-design-system";
    **Breakpoints** match Figma's Responsive modes: default = Mobile, `tablet:` ≥ 768px, `desktop:` ≥ 1280px. (`sm:`/`md:`/`lg:` don't exist.)
    **Shadows:** `shadow-elevation-hover` only (cards and tiles on hover). **Motion:** `duration-instant|fast|base|slow`, `ease-out`; springs are in `--motion-spring-*` for JS animation.
 7. **Icons:** only `<Icon name="…" />` from this package (24px, 1.75 stroke). Available names: `arrow-right`, `arrow-left`, `arrow-up-right`, `external`, `mail`, `linkedin`, `menu`, `close`, `plus`, `check`, `play`, `filter`, `sparkle`, `download`. No other icon libraries.
-8. **Sizes from Figma that aren't spacing tokens** have named utilities (defined in `theme.css`): icons inside components `icon-xs` 16 · `icon-sm` 18 · `icon-md` 20 (line weight kept at 1.75); `size-touch` 44 (minimum touch target); `size-mark` 28 / `size-mark-sm` 22 (Logo); `size-avatar-lg` 220; `size-portrait-md` 160 (Hero portrait on Tablet); `size-dot` 6; `rounded-t-media` 12 + `aspect-card` 11/5 (Project card image); `card-lift` (card hover lift + tilt); `border-control` (1.5px outline); `animate-pop` (Tag selection bounce). Add new ones there with a comment saying which Figma component they come from, **and register them in `cn()`'s config in `src/lib/utils.ts`** (otherwise `cn()` can't tell `size-96` and `size-avatar-lg` apart and the wrong one wins). Never inline the number.
+8. **Sizes from Figma that aren't spacing tokens** have named utilities (defined in `theme.css`): icons inside components `icon-xs` 16 · `icon-sm` 18 · `icon-md` 20 (line weight kept at 1.75); `size-touch` 44 (minimum touch target); `size-mark` 28 / `size-mark-sm` 22 (Logo); `size-avatar-lg` 220; `size-portrait-md` 160 (Hero portrait on Tablet); `size-dot` 6; `rounded-t-media` 12 + `aspect-card` 11/5 (Project card image); `card-lift` (card hover lift + tilt); `max-w-title` 900 (case-study H1); `aspect-cover` / `aspect-wide` / `aspect-inset` / `aspect-pair` (case-study image shapes); `border-control` (1.5px outline); `animate-pop` (Tag selection bounce). Add new ones there with a comment saying which Figma component they come from, **and register them in `cn()`'s config in `src/lib/utils.ts`** (otherwise `cn()` can't tell `size-96` and `size-avatar-lg` apart and the wrong one wins). Never inline the number.
 9. **Accessibility is not optional.** Icon-only buttons need `aria-label`. Keep the visible focus ring. Respect `prefers-reduced-motion` (the motion tokens already do).
 
 ### Theme
 - Default: follows the device (light/dark). Force a theme with `class="light"` or `class="dark"` on `<html>`.
-- Tints for projects: `blue`, `mint`, `peach`. Use one tint per project, consistently across its card, hero, outcome summary and next-project card.
+- Tints for projects: `blue`, `mint`, `peach` (type `Tint`). Use one tint per project, consistently across its Project card, Case study hero, Outcome summary, and the Next project card that points to it.
 
 ## Prop naming rules (Figma → React)
 
@@ -81,16 +81,16 @@ API column = intended props. ✅ built · 🟡 planned. Figma links: `https://ww
 | Section header | 8:48 | ✅ | `overline`, `title`, `action?: { label, href }`, `as?` (heading level, default h2) |
 | Project card | 8:217 | ✅ | `project`, `client?`, `description`, `tint: "blue"\|"mint"\|"peach"`, `status?: "live"\|"coming-soon"`, `href?`, `linkLabel?`, `imageSrc?` + `imageAlt?` or `image?` (own element). Whole card clickable |
 | About block | 8:224 | ✅ | `children` (`<p>` paragraphs), `title?` ("About me"), `cvHref?` (shows "View my CV"), `cvLabel?` |
-| Case study hero | 9:65 | 🟡 | `title`, `summary`, `tint` |
-| Text block | 9:66 | 🟡 | `heading?`, `children` (body) |
-| Image block | 9:80 | 🟡 | `layout: "full-width"\|"inset"\|"side-by-side"`, `caption?` |
-| Pull quote | 9:81 | 🟡 | `quote`, `attribution` |
-| Stat | 9:86 | 🟡 | `value`, `label` |
-| Process step | 9:99 | 🟡 | `number`, `title`, `description` |
-| Process steps | 13:120 | 🟡 | `steps` (responsive layout) |
-| Key stats | 13:141 | 🟡 | `stats` (responsive layout) |
-| Outcome summary | 9:172 | 🟡 | `items` (3), `tint` |
-| Next project | 9:261 | 🟡 | `title`, `tint`, `href` |
+| Case study hero | 9:65 | ✅ | `client` (tag text), `title`, `summary`, `tint`, `meta?: { label, value }[]`, `coverSrc?` + `coverAlt?` or `cover?` |
+| Text block | 9:66 | ✅ | `heading?`, `children` (string or `<p>`s; Body/Large) |
+| Image block | 9:80 | ✅ | `layout?: "full-width"\|"inset"\|"side-by-side"`, `images: { src, alt }[]` (2 for side-by-side), `caption?` |
+| Pull quote | 9:81 | ✅ | `quote`, `attribution?` |
+| Stat | 9:86 | ✅ | `value`, `label` |
+| Process step | 9:99 | ✅ | `number`, `title`, `description` |
+| Process steps | 13:120 | ✅ | `steps: { number, title, description }[]` (1 column Mobile, 2 from Tablet) |
+| Key stats | 13:141 | ✅ | `stats: { value, label }[]` (stacked Mobile, row from Tablet) |
+| Outcome summary | 9:172 | ✅ | `items: string[]`, `tint`, `title?` ("Outcome") |
+| Next project | 9:261 | ✅ | `title`, `tint`, `href`, `overline?`, `asChild?` (empty router link). Whole card is one link |
 | Experiment tile | 11:96 | 🟡 | `title`, `description`, `media: "image"\|"video"` |
 | Filter tabs | 11:99 | 🟡 | `options`, `value`, `onValueChange` |
 | Embed block | 11:110 | 🟡 | `src`, `caption?` |

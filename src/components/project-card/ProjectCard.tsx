@@ -1,8 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { TextLink } from "@/components/text-link";
+import { type Tint, tintBg } from "@/lib/tint";
 import { cn } from "@/lib/utils";
-
-const tints = { blue: "bg-surface-blue", mint: "bg-surface-mint", peach: "bg-surface-peach" } as const;
 
 export interface ProjectCardProps extends HTMLAttributes<HTMLElement> {
   /** Project name (bold). Figma: `Project`. */
@@ -12,7 +11,7 @@ export interface ProjectCardProps extends HTMLAttributes<HTMLElement> {
   /** One or two sentences. Figma: `Description`. */
   description: string;
   /** Background tint. Use the same tint everywhere for this project. Figma: `Tint`. */
-  tint: "blue" | "mint" | "peach";
+  tint: Tint;
   /** "live" shows a "Read case study" link; "coming-soon" shows a non-clickable label. Figma: `Status`. Default "live". */
   status?: "live" | "coming-soon";
   /** Case study URL (needed when status is "live"). */
@@ -58,7 +57,7 @@ export function ProjectCard({
       className={cn(
         "group relative flex flex-col overflow-hidden rounded-card px-card-padding pt-card-padding",
         "transition-all duration-base ease-out hover:card-lift hover:shadow-elevation-hover",
-        tints[tint],
+        tintBg[tint],
         className,
       )}
       {...props}

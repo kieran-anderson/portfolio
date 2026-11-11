@@ -138,6 +138,13 @@
   --radius-media: 12px;
   --aspect-card: 11 / 5;
 
+  /* Case study shapes from Figma: cover 1216×560, image blocks 1216×640 / 800×480 / 592×440, title 900 wide */
+  --aspect-cover: 76 / 35;
+  --aspect-wide: 19 / 10;
+  --aspect-inset: 5 / 3;
+  --aspect-pair: 74 / 55;
+  --container-title: 900px;
+
   /* Selection bounce for Tag: 1 → 1.05 → 1 (Figma: spring/bouncy) */
   --animate-pop: ka-pop var(--duration-base) var(--motion-ease-out);
   /* Mobile menu: panel slides down, links rise in with a 40ms stagger (Figma: spring/gentle) */

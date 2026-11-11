@@ -1,6 +1,6 @@
 # ka-design-system — Plan
 
-**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · Navigation ✅ · Home sections ✅ · next: Case study + Playground
+**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · Navigation ✅ · Home sections ✅ · Case study ✅ · next: Playground
 **Figma source:** [Design system](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system) (file key `o88Kjupw7MOvSqAC8as9ye`)
 **Goal:** Turn the Figma design system into a real React component library on GitHub that people and AI agents can read, use and build with correctly. Figma stays the source of truth for how things look; code is the source of truth for how they behave.
 
@@ -229,3 +229,11 @@ Between stops Claude works in long stretches and commits after each meaningful s
 - **Hero portrait:** the Avatar is 96 / 160 / 220 by breakpoint. Mobile puts the portrait on top; Tablet and up put it on the right.
 - **Figma fix to consider:** the Project card image's 12px top corners aren't a radius token. Code uses a named `radius-media`. Option: add `radius/media = 12` in Figma and bind it.
 - **Bug found and fixed:** `cn()` didn't know the named sizes clashed with each other, so the Hero portrait came out 220px on Mobile. Named sizes are now registered (this is in the CLAUDE.md rules).
+
+### 11 Nov 2026: Case study components
+- **Built:** Case study hero, Text block, Image block, Pull quote, Stat, Process step, Process steps, Key stats, Outcome summary, Next project, with stories (shared sample content from Figma in `case-study-hero/demo.ts`, offline placeholder images), Code Connect templates and CLAUDE.md rows.
+- **Comparison** (`docs/verification/case-study-figma-vs-code.png`, Desktop, light and dark): every component measures the same as Figma at 1280. Inset captions are centred like Figma (found by comparing).
+- **Automatic responsive layouts:** Process steps (2 columns → 1) and Key stats (row → stack) replace Figma's `Layout` variants. Outcome summary's Item 1/2/3 became `items`.
+- **Accessibility:** meta facts are a description list; process steps are an ordered list (screen readers hear "Step 01: Discover"); quotes use `figure`/`blockquote`; Next project is one link with a decorative arrow (no link-inside-a-link).
+- **Not built yet (motion):** "reveal on scroll" (images fade and rise 24px; stats count up) needs a small scroll-trigger helper. Proposed as a follow-up; until then, content simply appears.
+- New: shared `Tint` type, `max-w-title` (900), `aspect-cover`/`wide`/`inset`/`pair`.
