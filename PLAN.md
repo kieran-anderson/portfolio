@@ -1,6 +1,6 @@
 # ka-design-system — Plan
 
-**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · Navigation ✅ · Home sections ✅ · Case study ✅ · Playground ✅ · Stop 3: pushed to GitHub ✅ · Figma library published ✅ · Code Connect linked by hand (28/29) ✅
+**Status:** Figma fixes ✅ · Stop 1 ✅ · tokens, theme, icons ✅ · Stop 2 (Button) ✅ · Core basics ✅ · Navigation ✅ · Home sections ✅ · Case study ✅ · Playground ✅ · Stop 3: pushed to GitHub ✅ · Figma library published ✅ · Code Connect linked by hand (29/29) ✅
 **Figma source:** [Design system](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system) (file key `o88Kjupw7MOvSqAC8as9ye`)
 **Goal:** Turn the Figma design system into a real React component library on GitHub that people and AI agents can read, use and build with correctly. Figma stays the source of truth for how things look; code is the source of truth for how they behave.
 
@@ -255,5 +255,5 @@ Between stops Claude works in long stretches and commits after each meaningful s
 - **GitHub:** pushed to `kieran-anderson/portfolio` (**private**; it was created public and switched to private before the first push).
 - **Figma library:** published by Kieran.
 - **Code Connect via the Figma connection:** refused. "Code connections can only be made in libraries that are in Organization or Enterprise plans." The file is on Professional.
-- **Code Connect by hand:** Kieran linked the components to their `.tsx` files in Figma. Checked from Figma's side: **28 of 29 linked** (all variants, plus nested instances). **Missing: Text block** (node 9:66 → `src/components/text-block/TextBlock.tsx`, `TextBlock`).
+- **Code Connect by hand:** Kieran linked the components to their `.tsx` files in Figma. Checked from Figma's side: **all 29 linked** (all variants, plus nested instances). Text block was added last.
 - These hand-made links tell Dev Mode *which* file to use but carry **no code snippets** ("no template"). The 29 `.figma.ts` templates are ready; publishing them needs `npx figma connect publish` with Kieran's own token (may be allowed on Professional) or an Organization plan.
