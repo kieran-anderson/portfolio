@@ -12,7 +12,7 @@ import { join, relative, resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const scanDirs = ["src/components", "src/lib"];
+const scanDirs = ["src/components", "src/lib", "site/src"];
 const rules = [
   { re: /#[0-9a-fA-F]{3,8}\b/, why: "raw hex colour — use a color token class (e.g. bg-surface-default)" },
   { re: /\b(?:rgba?|hsla?|oklch|oklab)\(/, why: "raw colour function — use a color token" },

@@ -24,6 +24,9 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static",
+    "site:dev": "vite --config site/vite.config.ts",
+    "site:build": "vite build --config site/vite.config.ts",
+    "site:preview": "vite preview --config site/vite.config.ts",
     "tokens": "node tokens/build-tokens.mjs",
     "build": "npm run tokens && vite build",
     "typecheck": "tsc --noEmit",

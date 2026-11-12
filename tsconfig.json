@@ -19,6 +19,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "ka-design-system": [
+        "./src/index.ts"
       ]
     },
     "types": [
@@ -27,7 +30,8 @@
   },
   "include": [
     "src",
-    ".storybook"
+    ".storybook",
+    "site/src"
   ],
   "exclude": [
     "src/**/*.figma.ts"
