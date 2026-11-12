@@ -25,8 +25,8 @@ export const contactCta: NavItem = { label: "Get in touch", href: "#contact" };
 
 export const hero = {
   disciplines: ["Product design", "UX research", "Design systems", "AI prototyping"],
-  /** TODO(Kieran): add your photo at site/public/images/portrait.jpg (square, at least 440×440). Until then the initials show. */
-  portraitSrc: "/images/portrait.jpg",
+  /** TODO(Kieran): add your photo at site/public/images/portrait.png (export the Hero intro "Portrait" layer from Figma at 2x). Until then the initials show. */
+  portraitSrc: "/images/portrait.png",
   portraitAlt: "Kieran Anderson",
 };
 

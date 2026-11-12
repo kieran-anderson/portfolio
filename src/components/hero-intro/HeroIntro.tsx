@@ -22,7 +22,7 @@ export interface HeroIntroProps extends HTMLAttributes<HTMLElement> {
 /**
  * HeroIntro — the Home page intro: statement, supporting line, discipline tags and portrait.
  * Responsive (Figma's `Breakpoint` variants happen automatically):
- * Mobile: 96px portrait on top, text below · Tablet: text left, 160px portrait right (gap 32) · Desktop: 220px portrait (gap 64).
+ * Mobile: 96px portrait on top, text below · Tablet: text left, 160px portrait top-right (gap 32) · Desktop: 220px portrait top-right (gap 64).
  * Put it inside a container of `max-w-content`.
  *
  * @example
@@ -36,7 +36,7 @@ export function HeroIntro({ statement, previously, disciplines = [], portraitSrc
   return (
     <section
       data-slot="hero-intro"
-      className={cn("flex w-full flex-col gap-24 tablet:flex-row-reverse tablet:items-center tablet:gap-32 desktop:gap-64", className)}
+      className={cn("flex w-full flex-col gap-24 tablet:flex-row-reverse tablet:items-start tablet:gap-32 desktop:gap-64", className)}
       {...props}
     >
       <Avatar
