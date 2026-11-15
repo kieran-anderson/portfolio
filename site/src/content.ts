@@ -7,8 +7,8 @@ import type { NavItem, Tint } from "ka-design-system";
 export const site = {
   name: "Kieran Anderson",
   email: "kieran_anderson@icloud.com",
-  /** TODO(Kieran): your LinkedIn profile URL. */
-  linkedIn: "https://www.linkedin.com/",
+  /** LinkedIn profile. The footer button opens it in a new tab. */
+  linkedIn: "https://www.linkedin.com/in/kieran-anderson-designer/",
   /** TODO(Kieran): put your CV at site/public/cv.pdf. */
   cvHref: "/cv.pdf",
 };
