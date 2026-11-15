@@ -49,7 +49,7 @@ export const projects: Project[] = [
     description: "A redesign of a full help centre to increase user satisfaction and lower operating costs.",
     tint: "blue",
     status: "live",
-    href: "/work/help-pages",
+    href: "/work/help-pages/",
     imageSrc: "/images/help-pages.png",
     imageAlt: "Community Fibre help centre home page, with a “How can we help?” search and help topics",
   },

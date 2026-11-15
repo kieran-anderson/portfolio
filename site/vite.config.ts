@@ -37,5 +37,16 @@ export default defineConfig({
       { find: /^@\//, replacement: `${lib}/` },
     ],
   },
-  build: { outDir: resolve(here, "dist"), emptyOutDir: true, sourcemap: true },
+  build: {
+    outDir: resolve(here, "dist"),
+    emptyOutDir: true,
+    sourcemap: true,
+    // One HTML file per page. Add new case studies here (and a matching entry file in site/src).
+    rollupOptions: {
+      input: {
+        home: resolve(here, "index.html"),
+        "help-pages": resolve(here, "work/help-pages/index.html"),
+      },
+    },
+  },
 });
