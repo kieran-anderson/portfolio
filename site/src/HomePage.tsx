@@ -49,8 +49,18 @@ export function HomePage() {
                     tint={p.tint}
                     status={p.status}
                     href={p.href}
-                    imageSrc={p.imageSrc}
-                    imageAlt={p.imageAlt}
+                    image={
+                      // Screenshots are pinned to the top so the site's header (logo) is never cropped off.
+                      p.imageSrc ? (
+                        <img
+                          src={p.imageSrc}
+                          alt={p.imageAlt ?? ""}
+                          loading="lazy"
+                          decoding="async"
+                          className="size-full object-cover object-top transition-transform duration-base ease-out group-hover:scale-103"
+                        />
+                      ) : undefined
+                    }
                     className="w-full"
                   />
                 </li>

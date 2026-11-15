@@ -50,6 +50,8 @@ export const projects: Project[] = [
     tint: "blue",
     status: "live",
     href: "/work/help-pages",
+    imageSrc: "/images/help-pages.png",
+    imageAlt: "Community Fibre help centre home page, with a “How can we help?” search and help topics",
   },
   {
     project: "Ops Docs Automation",
