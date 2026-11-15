@@ -7,7 +7,7 @@ export interface AboutBlockProps extends HTMLAttributes<HTMLElement> {
   title?: string;
   /** The paragraphs, as `<p>` elements (they get Body style and spacing automatically). */
   children: ReactNode;
-  /** CV link URL. When set, shows "View my CV". Figma: `Show CV link`. */
+  /** CV link URL. When set, shows "View my CV", which opens in a new tab. Figma: `Show CV link`. */
   cvHref?: string;
   /** CV link text. Default "View my CV". */
   cvLabel?: string;
@@ -15,7 +15,7 @@ export interface AboutBlockProps extends HTMLAttributes<HTMLElement> {
 
 /**
  * AboutBlock — "About me" heading, paragraphs and an optional CV link, at reading width (800 max).
- * Use on Home and as the intro of the About page.
+ * Use on Home and as the intro of the About page. The CV link opens in a new tab (screen readers are told so).
  *
  * @example
  * <AboutBlock cvHref="/cv.pdf">
@@ -28,7 +28,12 @@ export function AboutBlock({ title = "About me", children, cvHref, cvLabel = "Vi
     <section data-slot="about-block" className={cn("flex w-full max-w-reading flex-col items-start gap-16", className)} {...props}>
       <h2 className="text-h2 text-text-primary">{title}</h2>
       <div className="contents text-body text-text-secondary [&>p]:text-body [&>p]:text-text-secondary">{children}</div>
-      {cvHref && <TextLink href={cvHref}>{cvLabel}</TextLink>}
+      {cvHref && (
+        <TextLink href={cvHref} target="_blank" rel="noopener noreferrer">
+          {cvLabel}
+          <span className="sr-only"> (opens in a new tab)</span>
+        </TextLink>
+      )}
     </section>
   );
 }

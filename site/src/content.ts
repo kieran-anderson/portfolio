@@ -9,8 +9,8 @@ export const site = {
   email: "kieran_anderson@icloud.com",
   /** LinkedIn profile. The footer button opens it in a new tab. */
   linkedIn: "https://www.linkedin.com/in/kieran-anderson-designer/",
-  /** TODO(Kieran): put your CV at site/public/cv.pdf. */
-  cvHref: "/cv.pdf",
+  /** CV (site/public/assets/CV.pdf). "View my CV" opens it in a new tab. */
+  cvHref: "/assets/CV.pdf",
 };
 
 /** Header links. Home is the Work page, so "Work" points to "/" and shows as active here. */
