@@ -16,7 +16,7 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
   message?: string;
   /** Left legal line. Default "© {current year} Kieran Anderson". */
   copyright?: string;
-  /** Right legal line. Default "Designed in Figma, built with AI". */
+  /** Right legal line. Default "Designed by me and built with AI". */
   credit?: string;
 }
 
@@ -33,7 +33,7 @@ export function Footer({
   title = "Keep in touch",
   message = "Feel free to reach out for collaboration or just to say hi!",
   copyright = `© ${new Date().getFullYear()} Kieran Anderson`,
-  credit = "Designed in Figma, built with AI",
+  credit = "Designed by me and built with AI",
   className,
   ...props
 }: FooterProps) {
