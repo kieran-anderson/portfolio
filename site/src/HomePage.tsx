@@ -3,7 +3,7 @@
  * (Desktop 12:2, Tablet 12:161, Mobile 12:283). Spacing uses the responsive layout tokens, so the
  * page changes at 768 and 1280 on its own.
  */
-import { AboutBlock, HeroIntro, ProjectCard, SectionHeader } from "ka-design-system";
+import { AboutBlock, HeroIntro, ProjectCard, SectionHeader, cn } from "ka-design-system";
 import { about, hero, projects, site } from "./content";
 import { SiteLayout } from "./SiteLayout";
 
@@ -41,14 +41,18 @@ export function HomePage() {
                 status={p.status}
                 href={p.href}
                 image={
-                  // Screenshots are pinned to the top so the site's header (logo) is never cropped off.
+                  // Screenshots are pinned to the top so their header (logo) is never cropped off;
+                  // illustrations can ask to stay centred instead (imageFocus).
                   p.imageSrc ? (
                     <img
                       src={p.imageSrc}
                       alt={p.imageAlt ?? ""}
                       loading="lazy"
                       decoding="async"
-                      className="size-full object-cover object-top transition-transform duration-base ease-out group-hover:scale-103"
+                      className={cn(
+                        "size-full object-cover transition-transform duration-base ease-out group-hover:scale-103",
+                        p.imageFocus === "center" ? "object-center" : "object-top",
+                      )}
                     />
                   ) : undefined
                 }

@@ -40,6 +40,8 @@ export interface Project {
   /** TODO(Kieran): project images (Figma still shows "Replace with project image"). */
   imageSrc?: string;
   imageAlt?: string;
+  /** Which part of the image stays in view when the card crops it. Default "top" (keeps screenshot headers). */
+  imageFocus?: "top" | "center";
 }
 
 export const projects: Project[] = [
@@ -59,6 +61,9 @@ export const projects: Project[] = [
     description: "Design of an internal tool to decrease manual work and automate current processes.",
     tint: "mint",
     status: "coming-soon",
+    imageSrc: "/images/ops-docs-automation.jpeg",
+    imageAlt: "Illustration of a laptop, phone and bank card, each showing the Barclays logo",
+    imageFocus: "center",
   },
 ];
 
