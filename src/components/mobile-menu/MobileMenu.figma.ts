@@ -5,7 +5,7 @@
 import figma from "figma";
 
 export default {
-  example: figma.code`<MobileMenu links={links} activeHref="/work" email="you@example.com" />`,
+  example: figma.code`<MobileMenu email="you@example.com" />`,
   imports: ['import { MobileMenu } from "ka-design-system"'],
   id: "ka-mobile-menu",
   metadata: { nestable: false },

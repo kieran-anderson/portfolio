@@ -4,12 +4,12 @@
  * page changes at 768 and 1280 on its own.
  */
 import { AboutBlock, HeroIntro, ProjectCard, SectionHeader, cn } from "ka-design-system";
-import { about, hero, projects, site } from "./content";
+import { about, aboutImage, hero, projects, site } from "./content";
 import { SiteLayout } from "./SiteLayout";
 
 export function HomePage() {
   return (
-    <SiteLayout activeHref="/">
+    <SiteLayout>
       <HeroIntro
         statement={
           <>
@@ -63,7 +63,7 @@ export function HomePage() {
         </ul>
       </section>
 
-      <AboutBlock cvHref={site.cvHref}>
+      <AboutBlock id="about" cvHref={site.cvHref} imageSrc={aboutImage.src} imageAlt={aboutImage.alt}>
         {about.map((text) => (
           <p key={text}>{text}</p>
         ))}

@@ -9,7 +9,6 @@ export default {
   links={[
     { label: "Work", href: "/work" },
     { label: "About", href: "/about" },
-    { label: "Playground", href: "/playground" },
   ]}
   activeHref="/work"
   email="you@example.com"

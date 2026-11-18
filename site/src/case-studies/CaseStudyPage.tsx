@@ -19,7 +19,7 @@ import type { CaseStudy } from "./types";
 export function CaseStudyPage({ study }: { study: CaseStudy }) {
   const s = study;
   return (
-    <SiteLayout activeHref="/" gapClassName="gap-section-sm">
+    <SiteLayout gapClassName="gap-section-sm">
       <CaseStudyHero
         client={s.client}
         title={s.title}

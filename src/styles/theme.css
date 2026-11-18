@@ -143,6 +143,8 @@
   --aspect-wide: 19 / 10;
   --aspect-inset: 5 / 3;
   --aspect-pair: 74 / 55;
+  /* About block photo: 1216×460 (Figma: About block 8:224) */
+  --aspect-banner: 304 / 115;
   --container-title: 900px;
 
   /* Selection bounce for Tag: 1 → 1.05 → 1 (Figma: spring/bouncy) */

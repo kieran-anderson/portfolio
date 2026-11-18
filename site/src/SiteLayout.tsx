@@ -10,13 +10,13 @@ import { contactCta, navLinks, site } from "./content";
 export interface SiteLayoutProps {
   /** The page's sections. */
   children: ReactNode;
-  /** Which header link shows as active. Default "/" (Work). */
+  /** Which header link shows as active. Default: none (the links jump to sections on Home). */
   activeHref?: string;
   /** Gap between sections, as a token class. Default "gap-section". */
   gapClassName?: string;
 }
 
-export function SiteLayout({ children, activeHref = "/", gapClassName = "gap-section" }: SiteLayoutProps) {
+export function SiteLayout({ children, activeHref, gapClassName = "gap-section" }: SiteLayoutProps) {
   return (
     <>
       {/* Keyboard users can jump past the header. Hidden until it gets focus. */}

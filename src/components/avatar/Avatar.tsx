@@ -8,7 +8,7 @@ const sizes = {
 } as const;
 
 export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
-  /** Photo URL. Shown in black and white. If missing or it fails to load, the initials show instead. */
+  /** Photo URL, shown in full colour. If missing or it fails to load, the initials show instead. */
   src?: string;
   /** Describes the person, e.g. "Kieran Anderson". Required for accessibility. */
   alt: string;
@@ -20,7 +20,7 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
- * Avatar — circular black-and-white portrait with an initials fallback on the blue tint.
+ * Avatar — circular portrait (full colour) with an initials fallback on the blue tint.
  *
  * @example <Avatar src="/me.jpg" alt="Kieran Anderson" size="large" />
  */
@@ -40,7 +40,7 @@ export function Avatar({ src, alt, size = "medium", initials, className, ref, ..
       {...props}
     >
       {showPhoto ? (
-        <img src={src} alt={alt} onError={() => setFailed(true)} className="size-full object-cover grayscale" />
+        <img src={src} alt={alt} onError={() => setFailed(true)} className="size-full object-cover" />
       ) : (
         <span aria-hidden="true" className={cn(s.text, "font-bold", size === "small" && "font-normal")}>
           {letters}

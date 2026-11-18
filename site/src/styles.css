@@ -2,3 +2,10 @@
    plus the few layout classes the page itself uses. */
 @import "../../src/styles/index.css";
 @source "./";
+
+/* Header links jump to sections on Home: glide there, unless the visitor prefers less motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

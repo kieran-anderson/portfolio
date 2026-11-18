@@ -13,11 +13,13 @@ export const site = {
   cvHref: "/assets/CV.pdf",
 };
 
-/** Header links. Home is the Work page, so "Work" points to "/" and shows as active here. */
+/**
+ * Header links. Both jump to sections on Home (scrolling smoothly when already there); none shows as active.
+ * The leading "/" makes them work from other pages too, e.g. a case study.
+ */
 export const navLinks: NavItem[] = [
-  { label: "Work", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Playground", href: "/playground" },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/#about" },
 ];
 
 /** "Get in touch" jumps to the footer, which holds the contact details. */
@@ -25,9 +27,9 @@ export const contactCta: NavItem = { label: "Get in touch", href: "#contact" };
 
 export const hero = {
   disciplines: ["Product design", "UX research", "Design systems", "AI prototyping"],
-  /** TODO(Kieran): add your photo at site/public/images/portrait.png (export the Hero intro "Portrait" layer from Figma at 2x). Until then the initials show. */
-  portraitSrc: "/images/portrait.png",
-  portraitAlt: "Kieran Anderson",
+  /** Square, 880×880 (sharp at 2x on the 220px Desktop circle). Cropped from IMG_6762.jpeg with its photo metadata removed. */
+  portraitSrc: "/images/portrait-hiking.jpg",
+  portraitAlt: "Kieran Anderson smiling on a hike in the Scottish mountains",
 };
 
 export interface Project {
@@ -67,8 +69,15 @@ export const projects: Project[] = [
   },
 ];
 
+/** Photo under "About me": 2432×920 export from Figma (2x of 1216×460). */
+export const aboutImage = {
+  src: "/images/about.jpg",
+  alt: "A hiker in a yellow jacket on an overhanging rock ledge high above a fjord in Norway, under low cloud",
+};
+
 export const about = [
   "Currently based in Glasgow, I have been designing digital experiences for over 12 years — for household brands, startups and small agencies, which has taken me to live in three different countries.",
-  "I have a strong interest in AI tooling and vibe coding (which is how I built this portfolio).",
-  "When I’m not designing or tinkering, I’m usually out hiking or running in the Scottish mountains.",
+  "I have a strong interest in AI tooling and design systems - I designed and built this portfolio with a Figma/Storybook/Claude/GitHub setup.",
+  "In my spare time I enjoy hiking, running, camping, bungee jumping, skydiving and wild swimming. Living so close to the Scottish highlands means if I’m not at my laptop working I’m usually out enjoying the great outdoors!",
+  "I have a keen interest in travel and I have climbed mountains in Africa, Canada, the Caribbean and Europe",
 ];

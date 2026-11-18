@@ -42,7 +42,7 @@ export function Header({ links, activeHref, email, cta = { label: "Get in touch"
             <L href={cta.href}>{cta.label}</L>
           </Button>
         </nav>
-        <MobileMenu links={links} activeHref={activeHref} email={email} cta={cta} linkAs={L} className="tablet:hidden" />
+        <MobileMenu email={email} className="tablet:hidden" />
       </div>
     </header>
   );

@@ -13,7 +13,7 @@ export interface HeroIntroProps extends HTMLAttributes<HTMLElement> {
   previously?: ReactNode;
   /** Discipline tags under the text, e.g. ["Product design", "UX research"]. */
   disciplines?: string[];
-  /** Portrait photo URL (shown black and white). */
+  /** Portrait photo URL (shown in full colour). */
   portraitSrc?: string;
   /** Describes the portrait, e.g. "Kieran Anderson". */
   portraitAlt: string;

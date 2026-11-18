@@ -5,7 +5,7 @@ const meta = {
   title: "Core/Avatar",
   component: Avatar,
   tags: ["autodocs"],
-  parameters: { docs: { description: { component: "Circular black-and-white portrait. Shows initials on the blue tint when there's no photo or it fails to load. [Figma: Avatar](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system?node-id=6-148)" } } },
+  parameters: { docs: { description: { component: "Circular portrait in full colour. Shows initials on the blue tint when there's no photo or it fails to load. [Figma: Avatar](https://www.figma.com/design/o88Kjupw7MOvSqAC8as9ye/Design-system?node-id=6-148)" } } },
   args: { alt: "Kieran Anderson", size: "medium" },
   argTypes: { size: { control: "inline-radio", options: ["small", "medium", "large"] } },
 } satisfies Meta<typeof Avatar>;

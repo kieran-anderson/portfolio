@@ -10,7 +10,8 @@ export default {
   example: figma.code`<AboutBlock${showCv ? ' cvHref="/cv.pdf"' : ""}>
   <p>Currently based in Glasgow, …</p>
   <p>I have a strong interest in AI tooling …</p>
-  <p>When I’m not designing or tinkering, …</p>
+  <p>In my spare time I enjoy hiking, …</p>
+  <p>I have a keen interest in travel …</p>
 </AboutBlock>`,
   imports: ['import { AboutBlock } from "ka-design-system"'],
   id: "ka-about-block",
