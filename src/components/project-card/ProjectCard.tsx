@@ -69,8 +69,9 @@ export function ProjectCard({
         </h3>
         <p className="text-body-sm text-text-secondary">{description}</p>
         {live ? (
-          // The link's ::after covers the whole card so the card is clickable; focus ring stays on the link.
-          <TextLink href={href} className="self-start after:absolute after:inset-0">
+          // The link's ::after covers the whole card (title, text and image) so the card is clickable; focus ring stays
+          // on the link. z-10 keeps it above the image, whose hover zoom would otherwise sit on top and swallow clicks.
+          <TextLink href={href} className="self-start after:absolute after:inset-0 after:z-10">
             {linkLabel}
           </TextLink>
         ) : (
