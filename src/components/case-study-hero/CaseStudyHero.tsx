@@ -27,6 +27,8 @@ export interface CaseStudyHeroProps extends HTMLAttributes<HTMLElement> {
   coverAlt?: string;
   /** Or pass your own image element. Overrides `coverSrc`. */
   cover?: ReactNode;
+  /** Cover shape. "default" is Figma's 1216×560; "tall" (about 1216×608) suits full-page screenshots. Default "default". */
+  coverShape?: "default" | "tall";
 }
 
 /**
@@ -36,7 +38,7 @@ export interface CaseStudyHeroProps extends HTMLAttributes<HTMLElement> {
  * <CaseStudyHero client="Community Fibre · 2024" title="Redesigning a help centre…" summary="…" tint="blue"
  *   meta={[{ label: "Role", value: "Lead product designer" }, { label: "Timeline", value: "6 months" }]} />
  */
-export function CaseStudyHero({ client, title, summary, meta = [], tint, coverSrc, coverAlt = "", cover, className, ...props }: CaseStudyHeroProps) {
+export function CaseStudyHero({ client, title, summary, meta = [], tint, coverSrc, coverAlt = "", cover, coverShape = "default", className, ...props }: CaseStudyHeroProps) {
   return (
     <header data-slot="case-study-hero" className={cn("flex w-full flex-col gap-48", className)} {...props}>
       <div className="flex flex-col items-start gap-16">
@@ -54,7 +56,7 @@ export function CaseStudyHero({ client, title, summary, meta = [], tint, coverSr
           ))}
         </dl>
       )}
-      <div className={cn("aspect-cover w-full overflow-hidden rounded-card", tintBg[tint])}>
+      <div className={cn(coverShape === "tall" ? "aspect-cover-tall" : "aspect-cover", "w-full overflow-hidden rounded-card", tintBg[tint])}>
         {cover ?? (coverSrc ? <img src={coverSrc} alt={coverAlt} className="size-full object-cover" /> : null)}
       </div>
     </header>

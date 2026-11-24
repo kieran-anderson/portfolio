@@ -140,6 +140,8 @@
 
   /* Case study shapes from Figma: cover 1216×560, image blocks 1216×640 / 800×480 / 592×440, title 900 wide */
   --aspect-cover: 76 / 35;
+  /* Taller cover option, ~1216×608: fits full-page screenshots (about 2:1) without cropping them. Case study hero `coverShape="tall"` */
+  --aspect-cover-tall: 2 / 1;
   --aspect-wide: 19 / 10;
   --aspect-inset: 5 / 3;
   --aspect-pair: 74 / 55;
