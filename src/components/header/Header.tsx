@@ -15,6 +15,8 @@ export interface HeaderProps extends HTMLAttributes<HTMLElement>, SiteLinkProps 
   email: string;
   /** Call to action at the end of the nav. Default: "Get in touch" → "/contact". */
   cta?: NavItem;
+  /** Where the logo links to. Default "/". Set it when the site lives in a sub-folder, e.g. "/portfolio/". */
+  homeHref?: string;
 }
 
 /**
@@ -26,12 +28,12 @@ export interface HeaderProps extends HTMLAttributes<HTMLElement>, SiteLinkProps 
  *
  * @example <Header links={links} activeHref="/work" email="hello@example.com" />
  */
-export function Header({ links, activeHref, email, cta = { label: "Get in touch", href: "/contact" }, linkAs: L = "a", className, ...props }: HeaderProps) {
+export function Header({ links, activeHref, email, cta = { label: "Get in touch", href: "/contact" }, homeHref = "/", linkAs: L = "a", className, ...props }: HeaderProps) {
   return (
     <header data-slot="header" className={cn("bg-bg-page px-margin", className)} {...props}>
       <div className="mx-auto flex h-80 max-w-content items-center justify-between">
-        <Logo size="small" className="tablet:hidden" />
-        <Logo className="hidden tablet:inline-flex" />
+        <Logo size="small" href={homeHref} className="tablet:hidden" />
+        <Logo href={homeHref} className="hidden tablet:inline-flex" />
         <nav aria-label="Main" className="hidden items-center gap-24 tablet:flex desktop:gap-32">
           {links.map((l) => (
             <NavLink key={l.href} asChild active={l.href === activeHref}>
@@ -42,7 +44,7 @@ export function Header({ links, activeHref, email, cta = { label: "Get in touch"
             <L href={cta.href}>{cta.label}</L>
           </Button>
         </nav>
-        <MobileMenu email={email} className="tablet:hidden" />
+        <MobileMenu email={email} homeHref={homeHref} className="tablet:hidden" />
       </div>
     </header>
   );

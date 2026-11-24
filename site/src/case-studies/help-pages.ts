@@ -3,6 +3,7 @@
  * Tint is blue, matching its Project card on Home.
  */
 import type { CaseStudy } from "./types";
+import { url } from "../url";
 
 export const helpPages: CaseStudy = {
   tint: "blue",
@@ -17,7 +18,7 @@ export const helpPages: CaseStudy = {
     { label: "Platform", value: "Responsive web" },
   ],
   cover: {
-    src: "/images/help-pages.png",
+    src: url("/images/help-pages.png"),
     alt: "The redesigned Community Fibre help centre home page, with a “How can we help?” search and help topics",
     href: "https://help.communityfibre.co.uk/",
     // The screenshot is about 2:1, so the taller cover shows all of it instead of cropping the bottom.
@@ -76,7 +77,7 @@ export const helpPages: CaseStudy = {
       layout: "full-width",
       images: [
         {
-          src: "/images/help-pages/kick-off.jpg",
+          src: url("/images/help-pages/kick-off.jpg"),
           alt: "Kick off workshop board: how we will measure success (calls, postcode lookups, live chat, support emails, time to find an article), with sticky notes on what we’re doing and why, personas, what we need to find out, next steps and current pain points",
         },
       ],
@@ -129,7 +130,7 @@ export const helpPages: CaseStudy = {
       layout: "full-width",
       images: [
         {
-          src: "/images/help-pages/personas.jpg",
+          src: url("/images/help-pages/personas.jpg"),
           alt: "Help page personas board: The Pre-installer, asking “What happens now that I have signed up?”, with their bio, goals, needs and expectations, motivations, pain points and a scenario",
         },
       ],
@@ -155,7 +156,7 @@ export const helpPages: CaseStudy = {
       layout: "full-width",
       images: [
         {
-          src: "/images/help-pages/prototype.jpg",
+          src: url("/images/help-pages/prototype.jpg"),
           alt: "Prototype slide: mobile and desktop variations tested again on Maze, with improved metrics listed next to three mobile screens: the help homepage, the Troubleshooting category and its top articles",
         },
       ],

@@ -7,6 +7,8 @@ import { Icon } from "@/icons";
 export interface MobileMenuProps {
   /** Contact email, shown under the logo as a mailto link. */
   email: string;
+  /** Where the logo links to. Default "/". */
+  homeHref?: string;
   /** Controlled open state (optional). Leave out to let the menu manage itself. */
   open?: boolean;
   /** Called when the menu opens or closes. */
@@ -23,7 +25,7 @@ export interface MobileMenuProps {
  *
  * @example <MobileMenu email="hello@example.com" />
  */
-export function MobileMenu({ email, open, onOpenChange, className }: MobileMenuProps) {
+export function MobileMenu({ email, homeHref = "/", open, onOpenChange, className }: MobileMenuProps) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>
@@ -37,7 +39,7 @@ export function MobileMenu({ email, open, onOpenChange, className }: MobileMenuP
         >
           <Dialog.Title className="sr-only">Menu</Dialog.Title>
           <div className="flex items-center justify-between">
-            <Logo size="small" />
+            <Logo size="small" href={homeHref} />
             <Dialog.Close asChild>
               <IconButton icon={<Icon name="close" />} aria-label="Close menu" />
             </Dialog.Close>

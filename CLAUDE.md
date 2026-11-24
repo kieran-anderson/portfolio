@@ -74,8 +74,8 @@ API column = intended props. ✅ built · 🟡 planned. Figma links: `https://ww
 | Divider | 6:149 | ✅ | — (renders `<hr>`, fills its container) |
 | Logo | 6:158 | ✅ | `size: "default"\|"small"`, `href?` (default "/"), `asChild?` (pass an empty router `<Link>`) |
 | Nav link | 7:11 | ✅ | `children`, `href`, `active?` (sets `aria-current="page"`), `asChild?` (router link with the text inside) |
-| Header | 7:75 | ✅ | `links: NavItem[]`, `email`, `activeHref?`, `cta?` (default "Get in touch" → /contact), `linkAs?`. Responsive; includes Mobile menu below 768 |
-| Mobile menu | 7:76 | ✅ | `email`, `open?` + `onOpenChange?` (optional control). Renders its own toggle; the menu shows the logo, close button and email only (no page links, per Figma) |
+| Header | 7:75 | ✅ | `links: NavItem[]`, `email`, `activeHref?`, `cta?` (default "Get in touch" → /contact), `homeHref?` (logo link, default "/"), `linkAs?`. Responsive; includes Mobile menu below 768 |
+| Mobile menu | 7:76 | ✅ | `email`, `homeHref?`, `open?` + `onOpenChange?` (optional control). Renders its own toggle; the menu shows the logo, close button and email only (no page links, per Figma) |
 | Footer | 7:158 | ✅ | `email`, `linkedInHref`, `title?`, `message?`, `copyright?`, `credit?` (defaults from Figma). Responsive |
 | Hero intro | 8:47 | ✅ | `statement` (ReactNode; bold words in `<strong>`), `previously?` (ReactNode), `disciplines?: string[]`, `portraitSrc?`, `portraitAlt`. Responsive |
 | Section header | 8:48 | ✅ | `overline`, `title`, `action?: { label, href }`, `as?` (heading level, default h2) |

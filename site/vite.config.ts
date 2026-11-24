@@ -30,6 +30,8 @@ function skipLibraryCss(): Plugin {
  */
 export default defineConfig({
   root: here,
+  // Where the site is served from: "/" locally, "/portfolio/" on GitHub Pages (set by the deploy workflow).
+  base: process.env.SITE_BASE ?? "/",
   plugins: [skipLibraryCss(), react(), tailwindcss()],
   resolve: {
     alias: [

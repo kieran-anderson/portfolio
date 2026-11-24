@@ -3,6 +3,7 @@
  * Text is copied from Figma (Templates → Home, node 12:2).
  */
 import type { NavItem, Tint } from "ka-design-system";
+import { url } from "./url";
 
 export const site = {
   name: "Kieran Anderson",
@@ -10,7 +11,7 @@ export const site = {
   /** LinkedIn profile. The footer button opens it in a new tab. */
   linkedIn: "https://www.linkedin.com/in/kieran-anderson-designer/",
   /** CV (site/public/assets/CV.pdf). "View my CV" opens it in a new tab. */
-  cvHref: "/assets/CV.pdf",
+  cvHref: url("/assets/CV.pdf"),
 };
 
 /**
@@ -18,8 +19,8 @@ export const site = {
  * The leading "/" makes them work from other pages too, e.g. a case study.
  */
 export const navLinks: NavItem[] = [
-  { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
+  { label: "Work", href: url("/#work") },
+  { label: "About", href: url("/#about") },
 ];
 
 /** "Get in touch" jumps to the footer, which holds the contact details. */
@@ -28,7 +29,7 @@ export const contactCta: NavItem = { label: "Get in touch", href: "#contact" };
 export const hero = {
   disciplines: ["Product design", "UX research", "Design systems", "AI prototyping"],
   /** Square, 880×880 (sharp at 2x on the 220px Desktop circle). Cropped from IMG_6762.jpeg with its photo metadata removed. */
-  portraitSrc: "/images/portrait-hiking.jpg",
+  portraitSrc: url("/images/portrait-hiking.jpg"),
   portraitAlt: "Kieran Anderson smiling on a hike in the Scottish mountains",
 };
 
@@ -53,8 +54,8 @@ export const projects: Project[] = [
     description: "A redesign of a full help centre to increase user satisfaction and lower operating costs.",
     tint: "blue",
     status: "live",
-    href: "/work/help-pages/",
-    imageSrc: "/images/help-pages.png",
+    href: url("/work/help-pages/"),
+    imageSrc: url("/images/help-pages.png"),
     imageAlt: "Community Fibre help centre home page, with a “How can we help?” search and help topics",
   },
   {
@@ -63,7 +64,7 @@ export const projects: Project[] = [
     description: "Design of an internal tool to decrease manual work and automate current processes.",
     tint: "mint",
     status: "coming-soon",
-    imageSrc: "/images/ops-docs-automation.jpeg",
+    imageSrc: url("/images/ops-docs-automation.jpeg"),
     imageAlt: "Illustration of a laptop, phone and bank card, each showing the Barclays logo",
     imageFocus: "center",
   },
@@ -71,7 +72,7 @@ export const projects: Project[] = [
 
 /** Photo under "About me": 2432×920 export from Figma (2x of 1216×460). */
 export const aboutImage = {
-  src: "/images/about.jpg",
+  src: url("/images/about.jpg"),
   alt: "A hiker in a yellow jacket on an overhanging rock ledge high above a fjord in Norway, under low cloud",
 };
 

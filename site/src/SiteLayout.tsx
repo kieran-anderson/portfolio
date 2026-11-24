@@ -6,6 +6,7 @@
 import type { ReactNode } from "react";
 import { Button, Footer, Header, cn } from "ka-design-system";
 import { contactCta, navLinks, site } from "./content";
+import { url } from "./url";
 
 export interface SiteLayoutProps {
   /** The page's sections. */
@@ -24,7 +25,7 @@ export function SiteLayout({ children, activeHref, gapClassName = "gap-section" 
         <a href="#main">Skip to content</a>
       </Button>
 
-      <Header links={navLinks} activeHref={activeHref} email={site.email} cta={contactCta} />
+      <Header links={navLinks} activeHref={activeHref} email={site.email} cta={contactCta} homeHref={url("/")} />
 
       {/* Side margin, section-sm on top and section spacing below (56/96 Desktop, 40/64 Tablet, 32/48 Mobile). */}
       <main id="main" tabIndex={-1} className="bg-bg-page px-margin pb-section pt-section-sm outline-none">
