@@ -19,6 +19,7 @@ export const helpPages: CaseStudy = {
   cover: {
     src: "/images/help-pages.png",
     alt: "The redesigned Community Fibre help centre home page, with a “How can we help?” search and help topics",
+    href: "https://help.communityfibre.co.uk/",
   },
   problem: {
     heading: "The problem",

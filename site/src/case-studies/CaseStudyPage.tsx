@@ -26,12 +26,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
         summary={s.summary}
         meta={s.meta}
         tint={s.tint}
-        cover={
-          s.cover ? (
-            // Screenshots are pinned to the top so the page header in the shot is never cropped off.
-            <img src={s.cover.src} alt={s.cover.alt} fetchPriority="high" className="size-full object-cover object-top" />
-          ) : undefined
-        }
+        cover={s.cover ? <Cover {...s.cover} /> : undefined}
       />
 
       <TextBlock heading={s.problem.heading}>{s.problem.body}</TextBlock>
@@ -47,5 +42,21 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       <OutcomeSummary items={s.outcomes} tint={s.tint} />
       <NextProject title={s.next.title} tint={s.next.tint} href={s.next.href} />
     </SiteLayout>
+  );
+}
+
+/**
+ * The hero cover. Screenshots are pinned to the top so the page header in the shot is never cropped off.
+ * With `href`, the whole image links to the live site in a new tab (screen readers are told so); the focus ring
+ * is drawn inside the image because the cover panel clips anything outside its rounded corners.
+ */
+function Cover({ src, alt, href }: NonNullable<CaseStudy["cover"]>) {
+  const img = <img src={src} alt={alt} fetchPriority="high" className="size-full object-cover object-top" />;
+  if (!href) return img;
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="block size-full rounded-card focus-visible:-outline-offset-4">
+      {img}
+      <span className="sr-only"> (opens the live site in a new tab)</span>
+    </a>
   );
 }
