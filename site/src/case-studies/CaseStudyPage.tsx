@@ -1,6 +1,7 @@
 /**
  * Case study page — built only from ka-design-system components, in the order of Figma's Case study template
- * (Desktop 13:591, Tablet 13:732, Mobile 13:873): hero, key stats, then the story. Sections are `section-sm` apart (56 Desktop, 40 Tablet, 32 Mobile).
+ * (Desktop 13:591, Tablet 13:732, Mobile 13:873): hero, key stats, the problem, then the story
+ * blocks in order (`study.story`), outcome summary and next project. Sections are `section-sm` apart (56 Desktop, 40 Tablet, 32 Mobile).
  * Content comes from a `CaseStudy` object, so every case study shares this one layout.
  */
 import {
@@ -14,7 +15,7 @@ import {
   TextBlock,
 } from "ka-design-system";
 import { SiteLayout } from "../SiteLayout";
-import type { CaseStudy } from "./types";
+import type { CaseStudy, StorySection } from "./types";
 
 export function CaseStudyPage({ study }: { study: CaseStudy }) {
   const s = study;
@@ -32,18 +33,39 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       <KeyStats stats={s.stats} />
 
       <TextBlock heading={s.problem.heading}>{s.problem.body}</TextBlock>
-      {s.figure1.image && <ImageBlock layout="full-width" images={[s.figure1.image]} caption={s.figure1.caption} />}
-
-      <TextBlock heading={s.approach.heading}>{s.approach.body}</TextBlock>
-      <ProcessSteps steps={s.steps} />
-
-      <PullQuote quote={s.quote.text} attribution={s.quote.attribution} />
-      {s.figure2.images && <ImageBlock layout="side-by-side" images={s.figure2.images} caption={s.figure2.caption} />}
+      {s.story.map((section, i) => (
+        <Section key={i} section={section} />
+      ))}
 
       <OutcomeSummary items={s.outcomes} tint={s.tint} />
       <NextProject title={s.next.title} tint={s.next.tint} href={s.next.href} />
     </SiteLayout>
   );
+}
+
+/** Renders one story block with its design-system component. */
+function Section({ section }: { section: StorySection }) {
+  switch (section.type) {
+    case "text":
+      return (
+        <TextBlock heading={section.heading}>
+          {section.paragraphs.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </TextBlock>
+      );
+    case "steps":
+      return <ProcessSteps steps={section.steps} />;
+    case "quote":
+      return <PullQuote quote={section.text} attribution={section.attribution} />;
+    case "stats":
+      return <KeyStats stats={section.stats} />;
+    case "image": {
+      const needed = section.layout === "side-by-side" ? 2 : 1;
+      if (!section.images || section.images.length < needed) return null;
+      return <ImageBlock layout={section.layout} images={section.images} caption={section.caption} />;
+    }
+  }
 }
 
 /**
