@@ -141,14 +141,6 @@ export const helpPages: CaseStudy = {
         "New components were created and added to the main design system using atomic design, along with new textured background styles and a new icon set. The new pages pass on accessibility, especially contrast and heading structure.",
       ],
     },
-    {
-      type: "text",
-      heading: "What’s next",
-      paragraphs: [
-        "New branding has already been applied to the design system, and I’m working with developers to implement it. A workflow is set up to carry out further usability testing after launch to make sure users are happy, and a “How would you rate this article?” rating will show which articles are useful.",
-        "Next, we’re looking at how the Help pages can support current customers managing their accounts in My Account, and exploring how help and support could work in a native app, following Apple and Google guidelines.",
-      ],
-    },
   ],
   outcomes: [
     "A brand new Help section that has cut down on calls to customer service",
