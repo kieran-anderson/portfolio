@@ -13,8 +13,8 @@ export function HomePage() {
       <HeroIntro
         statement={
           <>
-            I'm Kieran, <strong>Senior product designer</strong> at Barclays. I thrive creating user-centric, impactful
-            designs that meet user needs and achieve business goals.
+            I'm Kieran, <strong>Senior product designer</strong> at Barclays. I thrive creating designs that meet user needs
+            and achieve business goals.
           </>
         }
         previously={
