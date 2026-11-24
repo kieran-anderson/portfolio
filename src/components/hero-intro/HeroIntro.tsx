@@ -1,6 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { Avatar } from "@/components/avatar";
 import { Tag } from "@/components/tag";
+import { TextLink } from "@/components/text-link";
 import { cn } from "@/lib/utils";
 
 export interface HeroIntroProps extends HTMLAttributes<HTMLElement> {
@@ -17,10 +18,14 @@ export interface HeroIntroProps extends HTMLAttributes<HTMLElement> {
   portraitSrc?: string;
   /** Describes the portrait, e.g. "Kieran Anderson". */
   portraitAlt: string;
+  /** CV link URL. When set, shows "View my CV" under the tags; it opens in a new tab. */
+  cvHref?: string;
+  /** CV link text. Default "View my CV". */
+  cvLabel?: string;
 }
 
 /**
- * HeroIntro — the Home page intro: statement, supporting line, discipline tags and portrait.
+ * HeroIntro — the Home page intro: statement, supporting line, discipline tags, optional CV link and portrait.
  * Responsive (Figma's `Breakpoint` variants happen automatically):
  * Mobile: 96px portrait on top, text below · Tablet: text left, 160px portrait top-right (gap 32) · Desktop: 220px portrait top-right (gap 64).
  * Put it inside a container of `max-w-content`.
@@ -32,7 +37,7 @@ export interface HeroIntroProps extends HTMLAttributes<HTMLElement> {
  *   portraitSrc="/me.jpg" portraitAlt="Kieran Anderson"
  * />
  */
-export function HeroIntro({ statement, previously, disciplines = [], portraitSrc, portraitAlt, className, ...props }: HeroIntroProps) {
+export function HeroIntro({ statement, previously, disciplines = [], portraitSrc, portraitAlt, cvHref, cvLabel = "View my CV", className, ...props }: HeroIntroProps) {
   return (
     <section
       data-slot="hero-intro"
@@ -56,6 +61,12 @@ export function HeroIntro({ statement, previously, disciplines = [], portraitSrc
               </li>
             ))}
           </ul>
+        )}
+        {cvHref && (
+          <TextLink href={cvHref} target="_blank" rel="noopener noreferrer" className="self-start">
+            {cvLabel}
+            <span className="sr-only"> (opens in a new tab)</span>
+          </TextLink>
         )}
       </div>
     </section>

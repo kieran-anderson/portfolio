@@ -25,6 +25,7 @@ export function HomePage() {
         disciplines={hero.disciplines}
         portraitSrc={hero.portraitSrc}
         portraitAlt={hero.portraitAlt}
+        cvHref={site.cvHref}
       />
 
       <section id="work" className="flex flex-col gap-32">
@@ -63,7 +64,7 @@ export function HomePage() {
         </ul>
       </section>
 
-      <AboutBlock id="about" cvHref={site.cvHref} imageSrc={aboutImage.src} imageAlt={aboutImage.alt}>
+      <AboutBlock id="about" imageSrc={aboutImage.src} imageAlt={aboutImage.alt}>
         {about.map((text) => (
           <p key={text}>{text}</p>
         ))}

@@ -77,7 +77,7 @@ API column = intended props. ✅ built · 🟡 planned. Figma links: `https://ww
 | Header | 7:75 | ✅ | `links: NavItem[]`, `email`, `activeHref?`, `cta?` (default "Get in touch" → /contact), `homeHref?` (logo link, default "/"), `linkAs?`. Responsive; includes Mobile menu below 768 |
 | Mobile menu | 7:76 | ✅ | `email`, `homeHref?`, `open?` + `onOpenChange?` (optional control). Renders its own toggle; the menu shows the logo, close button and email only (no page links, per Figma) |
 | Footer | 7:158 | ✅ | `email`, `linkedInHref`, `title?`, `message?`, `copyright?`, `credit?` (defaults from Figma). Responsive |
-| Hero intro | 8:47 | ✅ | `statement` (ReactNode; bold words in `<strong>`), `previously?` (ReactNode), `disciplines?: string[]`, `portraitSrc?`, `portraitAlt`. Responsive |
+| Hero intro | 8:47 | ✅ | `statement` (ReactNode; bold words in `<strong>`), `previously?` (ReactNode), `disciplines?: string[]`, `portraitSrc?`, `portraitAlt`, `cvHref?` + `cvLabel?` ("View my CV" under the tags, new tab). Responsive |
 | Section header | 8:48 | ✅ | `overline`, `title`, `action?: { label, href }`, `as?` (heading level, default h2) |
 | Project card | 8:217 | ✅ | `project`, `client?`, `description`, `tint: "blue"\|"mint"\|"peach"`, `status?: "live"\|"coming-soon"`, `href?`, `linkLabel?`, `imageSrc?` + `imageAlt?` or `image?` (own element). Whole card clickable |
 | About block | 8:224 | ✅ | `children` (`<p>` paragraphs), `title?` ("About me"), `imageSrc?` + `imageAlt?` (wide photo under the heading), `cvHref?` (shows "View my CV", new tab), `cvLabel?`. Full content width |
