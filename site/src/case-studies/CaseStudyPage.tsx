@@ -38,7 +38,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       ))}
 
       <OutcomeSummary items={s.outcomes} tint={s.tint} />
-      <NextProject title={s.next.title} tint={s.next.tint} href={s.next.href} />
+      {s.next && <NextProject title={s.next.title} tint={s.next.tint} href={s.next.href} />}
     </SiteLayout>
   );
 }

@@ -72,6 +72,17 @@ export const helpPages: CaseStudy = {
       ],
     },
     {
+      type: "image",
+      layout: "full-width",
+      images: [
+        {
+          src: "/images/help-pages/kick-off.jpg",
+          alt: "Kick off workshop board: how we will measure success (calls, postcode lookups, live chat, support emails, time to find an article), with sticky notes on what we’re doing and why, personas, what we need to find out, next steps and current pain points",
+        },
+      ],
+      caption: "Kick off workshop with stakeholders",
+    },
+    {
       type: "text",
       heading: "Data analysis",
       paragraphs: [
@@ -114,6 +125,17 @@ export const helpPages: CaseStudy = {
       ],
     },
     {
+      type: "image",
+      layout: "full-width",
+      images: [
+        {
+          src: "/images/help-pages/personas.jpg",
+          alt: "Help page personas board: The Pre-installer, asking “What happens now that I have signed up?”, with their bio, goals, needs and expectations, motivations, pain points and a scenario",
+        },
+      ],
+      caption: "Help page personas: The Pre-installer",
+    },
+    {
       type: "text",
       heading: "Prototype and testing",
       paragraphs: [
@@ -147,6 +169,5 @@ export const helpPages: CaseStudy = {
     "Troubleshooting and installation articles far easier to find in testing",
     "New components, styles and icons added to the main design system",
   ],
-  // Ops Docs Automation has no case study yet ("Coming soon"), so this goes to the case studies on Home for now.
-  next: { title: "Ops Docs Automation – Barclays", tint: "mint", href: "/#work" },
+  // No "Next project" card for now: add `next: { title, tint, href }` once Ops Docs Automation has a case study.
 };

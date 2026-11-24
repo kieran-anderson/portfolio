@@ -27,5 +27,6 @@ export interface CaseStudy {
   /** The rest of the story, after "The problem". */
   story: StorySection[];
   outcomes: string[];
-  next: { title: string; tint: Tint; href: string };
+  /** Card linking to the next case study. Leave out to end the page after the outcome summary. */
+  next?: { title: string; tint: Tint; href: string };
 }
