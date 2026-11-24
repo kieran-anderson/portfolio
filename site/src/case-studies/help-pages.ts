@@ -143,18 +143,23 @@ export const helpPages: CaseStudy = {
       ],
     },
     {
-      type: "image",
-      layout: "full-width",
-      // TODO(Kieran): export the prototype screens from the "Prototype & testing" slide.
-      caption: "Mobile prototype: help homepage, Troubleshooting category and article",
-    },
-    {
       type: "stats",
       stats: [
         { value: "0% → 80%", label: "findability of troubleshooting articles" },
         { value: "0% → 95%", label: "findability of installation articles" },
         { value: "Improved", label: "general sentiment and ease of tasks" },
       ],
+    },
+    {
+      type: "image",
+      layout: "full-width",
+      images: [
+        {
+          src: "/images/help-pages/prototype.jpg",
+          alt: "Prototype slide: mobile and desktop variations tested again on Maze, with improved metrics listed next to three mobile screens: the help homepage, the Troubleshooting category and its top articles",
+        },
+      ],
+      caption: "Mobile prototype: help homepage, Troubleshooting category and top articles",
     },
     {
       type: "text",
