@@ -1,6 +1,6 @@
 /**
  * Case study page — built only from ka-design-system components, in the order of Figma's Case study template
- * (Desktop 13:591, Tablet 13:732, Mobile 13:873). Sections are `section-sm` apart (56 Desktop, 40 Tablet, 32 Mobile).
+ * (Desktop 13:591, Tablet 13:732, Mobile 13:873): hero, key stats, then the story. Sections are `section-sm` apart (56 Desktop, 40 Tablet, 32 Mobile).
  * Content comes from a `CaseStudy` object, so every case study shares this one layout.
  */
 import {
@@ -27,7 +27,9 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
         meta={s.meta}
         tint={s.tint}
         cover={s.cover ? <Cover {...s.cover} /> : undefined}
+        coverShape={s.cover?.shape}
       />
+      <KeyStats stats={s.stats} />
 
       <TextBlock heading={s.problem.heading}>{s.problem.body}</TextBlock>
       {s.figure1.image && <ImageBlock layout="full-width" images={[s.figure1.image]} caption={s.figure1.caption} />}
@@ -38,7 +40,6 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
       <PullQuote quote={s.quote.text} attribution={s.quote.attribution} />
       {s.figure2.images && <ImageBlock layout="side-by-side" images={s.figure2.images} caption={s.figure2.caption} />}
 
-      <KeyStats stats={s.stats} />
       <OutcomeSummary items={s.outcomes} tint={s.tint} />
       <NextProject title={s.next.title} tint={s.next.tint} href={s.next.href} />
     </SiteLayout>

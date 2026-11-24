@@ -6,10 +6,10 @@ import type { CaseStudy } from "./types";
 
 export const helpPages: CaseStudy = {
   tint: "blue",
-  client: "Community Fibre · 2024",
-  title: "Redesigning a help centre to cut support calls",
+  client: "Community Fibre",
+  title: "Redesign of help centre to cut support calls",
   summary:
-    "A full redesign of the Community Fibre help centre — from research and content strategy to a new information architecture and component library.",
+    "A full redesign of the Community Fibre help centre — from research and content strategy to a new information architecture and branded design.",
   meta: [
     { label: "Role", value: "Lead product designer" },
     { label: "Timeline", value: "6 months" },
@@ -20,10 +20,12 @@ export const helpPages: CaseStudy = {
     src: "/images/help-pages.png",
     alt: "The redesigned Community Fibre help centre home page, with a “How can we help?” search and help topics",
     href: "https://help.communityfibre.co.uk/",
+    // The screenshot is about 2:1, so the taller cover shows all of it instead of cropping the bottom.
+    shape: "tall",
   },
   problem: {
     heading: "The problem",
-    body: "Customers couldn’t find answers to simple questions, so they called support instead. Over 40% of calls were about topics already covered in the help centre — the content was there, but nobody could find it.",
+    body: "The customer service team were receiving more calls than they could handle and were looking for ways to cut down on this. The original help site implementation was not fit for purpose based on previous user research, design best practice and comments left on Hotjar, surveys etc. The task was to redesign the help pages so it is easier for users to navigate, find the answers to what they need and ultimately, cut down on customer service calls to save the business money.",
   },
   figure1: {
     // TODO(Kieran): add an image, e.g. { src: "/images/help-pages/old-help-centre.png", alt: "…" }

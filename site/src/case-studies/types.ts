@@ -8,7 +8,7 @@ export interface CaseStudy {
   summary: string;
   meta: CaseStudyMeta[];
   /** Cover image. Leave out to show just the tinted panel. `href` makes it a link that opens in a new tab. */
-  cover?: BlockImage & { href?: string };
+  cover?: BlockImage & { href?: string; shape?: "default" | "tall" };
   problem: { heading: string; body: string };
   /** Figure under "The problem" (full width). No image → the block is left out. */
   figure1: { image?: BlockImage; caption: string };
